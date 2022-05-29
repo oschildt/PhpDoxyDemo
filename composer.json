@@ -1,0 +1,9 @@
+{
+  "require": {
+    "php": ">=8.0",
+    "smartfactory/phpdoxy": "dev-main"
+  },
+  "config": {
+    "optimize-autoloader": true
+  }
+}

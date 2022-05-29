@@ -1,0 +1,2575 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta name="mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+
+        <link rel="stylesheet" href="resources/bootstrap.min.css">
+        <link rel="stylesheet" href="resources/style.css">
+        <link rel="stylesheet" href="resources/jquery.iviewer.css">
+
+        <title>
+            Class: UserSettingsManager
+        </title>
+    </head>
+
+    <body>
+        <div id="navigation">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <nav class="navbar">
+                    <ul class="nav navbar-nav">
+                        
+                        
+                        <li>
+                            <a href="index.html" class="">
+                                Overview
+                            </a>
+                        </li>
+                        
+                        <li>
+                            <a href="classes.html" class="active">
+                                Classes
+                            </a>
+                        </li>
+                        
+                        <li>
+                            <a href="interfaces.html" class="">
+                                Interfaces
+                            </a>
+                        </li>
+                        
+                        <li>
+                            <a href="traits.html" class="">
+                                Traits
+                            </a>
+                        </li>
+                        
+                        <li>
+                            <a href="functions.html" class="">
+                                Functions
+                            </a>
+                        </li>
+                        
+                        <li>
+                            <a href="log.html" class="">
+                                Log
+                            </a>
+                        </li>
+                        
+                        <li>
+                            <a href="structure.html" class="">
+                                Structure
+                            </a>
+                        </li>
+                        
+
+                    </ul>
+
+                    <form id="search" class="pull-right">
+                        <input type="text" name="q" class="form-control text" placeholder="Search class, function or namespace">
+                    </form>
+                </nav>
+            </div>
+        </div>
+    </div>
+</div>
+
+        
+        <div id="breadcrumbs">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+            
+                
+                <div class="pull-left type">
+                    <span class="label label-success">Class</span>
+                </div>
+                
+                
+                <ol class="breadcrumb pull-left">
+                        
+                        
+
+                        <li>
+                            <a href="namespace-SmartFactory.html">SmartFactory</a>
+                        </li>
+
+                        <!-- if separator -->
+                        <li class="backslash">\</li>
+                        <!-- endif separator -->
+
+                        
+ 
+
+                        <li class="active">UserSettingsManager</li>
+                </ol>
+                
+            </div>
+        </div>
+    </div>
+</div>
+
+        
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <h1>Class: UserSettingsManager</h1>
+
+
+
+<div class="definition"></div>
+
+
+<div class="short-description">
+<p>Class for management of the user settings.</p>
+</div>
+
+
+
+<div class="long_description">
+<h2>Details</h2>
+<p>When you introduce a new user setting. You have to create a column for it in the corresponding
+table add it to the initialization and specify the data type.</p>
+<p>The user settings are loaded only once by the start of the session and are kept until the session
+is valid. Saving of the user settings updates both the session and the database. When a settings is
+requested, it is taken from the session, not from the database.</p>
+</div>
+
+
+
+
+
+
+<h2>Implements</h2>
+<div class="item_list">
+
+<a href='interface-SmartFactory.Interfaces.ISettingsManager.html'>\SmartFactory\Interfaces\ISettingsManager</a><br>
+
+</div>
+
+
+
+
+
+<h2>Authors</h2>
+<div class="item_list">
+
+<div class='item'>Oleg Schildt</div>
+
+</div>
+
+
+
+
+
+
+<h2>Package</h2>
+<div class="item_list">
+<a href='package-System.html'>System</a>
+</div>
+
+
+
+<h2>Source code</h2>
+<div class="item_list">
+<a href='source-SmartFactory.UserSettingsManager.php.html#34'>SmartFactory/UserSettingsManager.php</a>
+</div>
+
+
+<h2>See also</h2>
+<div class="item_list">
+
+<a href='class-SmartFactory.ConfigSettingsManager.html'>\SmartFactory\ConfigSettingsManager</a><br>
+
+
+<a href='class-SmartFactory.RuntimeSettingsManager.html'>\SmartFactory\RuntimeSettingsManager</a><br>
+
+
+</div>
+
+
+
+<h2>Uses</h2>
+<div class="item_list">
+
+<a href='class-SmartFactory.DatabaseWorkers.DBWorker.html'>\SmartFactory\DatabaseWorkers\DBWorker</a><br>
+
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+<p>&nbsp;</p>
+
+
+
+<table class="table table-responsive table-bordered table-striped class_multicolumn">
+      <tr><th colspan="2">Properties</th></tr>
+      
+      <tr>
+          <td>
+              <div style='float:left'><a href="#$context">$context</a></div>
+
+              <div style='float:right'>
+              
+              <span class='label label-warning'>protected</span>
+              </div>
+              <div style="clear:both"></div>
+          </td>
+          <td class="description_column">
+              <p>Internal variable for storing the current context.</p>
+          </td>
+      </tr><tr>
+          <td>
+              <div style='float:left'><a href="#$dbworker">$dbworker</a></div>
+
+              <div style='float:right'>
+              
+              <span class='label label-warning'>protected</span>
+              </div>
+              <div style="clear:both"></div>
+          </td>
+          <td class="description_column">
+              <p>Internal variable for storing the dbworker.</p>
+          </td>
+      </tr><tr>
+          <td>
+              <div style='float:left'><a href="#$multichoice_tables">$multichoice_tables</a></div>
+
+              <div style='float:right'>
+              
+              <span class='label label-warning'>protected</span>
+              </div>
+              <div style="clear:both"></div>
+          </td>
+          <td class="description_column">
+              <p>Internal array for storing the auxiliary tables for storing the multichoce values.</p>
+          </td>
+      </tr><tr>
+          <td>
+              <div style='float:left'><a href="#$settings">$settings</a></div>
+
+              <div style='float:right'>
+              
+              <span class='label label-warning'>protected</span>
+              </div>
+              <div style="clear:both"></div>
+          </td>
+          <td class="description_column">
+              <p>Internal variable for storing the array of the settings values.</p>
+          </td>
+      </tr><tr>
+          <td>
+              <div style='float:left'><a href="#$settings_tables">$settings_tables</a></div>
+
+              <div style='float:right'>
+              
+              <span class='label label-warning'>protected</span>
+              </div>
+              <div style="clear:both"></div>
+          </td>
+          <td class="description_column">
+              <p>Internal array for storing the settings tables.</p>
+          </td>
+      </tr><tr>
+          <td>
+              <div style='float:left'><a href="#$user_id">$user_id</a></div>
+
+              <div style='float:right'>
+              
+              <span class='label label-warning'>protected</span>
+              </div>
+              <div style="clear:both"></div>
+          </td>
+          <td class="description_column">
+              <p>Internal variable for storing the user id.</p>
+          </td>
+      </tr><tr>
+          <td>
+              <div style='float:left'><a href="#$validator">$validator</a></div>
+
+              <div style='float:right'>
+              
+              <span class='label label-warning'>protected</span>
+              </div>
+              <div style="clear:both"></div>
+          </td>
+          <td class="description_column">
+              <p>Internal variable for storing the validator.</p>
+          </td>
+      </tr>
+      
+  </table>
+
+<table class="table table-responsive table-bordered table-striped class_multicolumn">
+      <tr><th colspan="2">Methods</th></tr>
+      
+      <tr>
+          <td>
+              <div style='float:left'><a href="#getContext">getContext()</a></div>
+
+              <div style='float:right'>
+              
+              <span class='label label-success'>public</span>
+              </div>
+              <div style="clear:both"></div>
+          </td>
+          <td class="description_column">
+              <p>Returns the current settings context.</p>
+          </td>
+      </tr><tr>
+          <td>
+              <div style='float:left'><a href="#getParameter">getParameter()</a></div>
+
+              <div style='float:right'>
+              
+              <span class='label label-success'>public</span>
+              </div>
+              <div style="clear:both"></div>
+          </td>
+          <td class="description_column">
+              <p>Returns the value of a settings parameter.</p>
+          </td>
+      </tr><tr>
+          <td>
+              <div style='float:left'><a href="#getUserID">getUserID()</a></div>
+
+              <div style='float:right'>
+              
+              <span class='label label-success'>public</span>
+              </div>
+              <div style="clear:both"></div>
+          </td>
+          <td class="description_column">
+              <p>Gets the user id to be used for loading settings.</p>
+          </td>
+      </tr><tr>
+          <td>
+              <div style='float:left'><a href="#getValidator">getValidator()</a></div>
+
+              <div style='float:right'>
+              
+              <span class='label label-success'>public</span>
+              </div>
+              <div style="clear:both"></div>
+          </td>
+          <td class="description_column">
+              <p>Returns the validator for the settings.</p>
+          </td>
+      </tr><tr>
+          <td>
+              <div style='float:left'><a href="#init">init()</a></div>
+
+              <div style='float:right'>
+              
+              <span class='label label-success'>public</span>
+              </div>
+              <div style="clear:both"></div>
+          </td>
+          <td class="description_column">
+              <p>Initializes the settings manager parameters.</p>
+          </td>
+      </tr><tr>
+          <td>
+              <div style='float:left'><a href="#loadSettings">loadSettings()</a></div>
+
+              <div style='float:right'>
+              
+              <span class='label label-success'>public</span>
+              </div>
+              <div style="clear:both"></div>
+          </td>
+          <td class="description_column">
+              <p>Loads the settings from the target user table.</p>
+          </td>
+      </tr><tr>
+          <td>
+              <div style='float:left'><a href="#loadSettingsData">loadSettingsData()</a></div>
+
+              <div style='float:right'>
+              
+              <span class='label label-warning'>protected</span>
+              </div>
+              <div style="clear:both"></div>
+          </td>
+          <td class="description_column">
+              <p>This is internal auxiliary function for loading the settings from the target user table
+defined by the iniailization.</p>
+          </td>
+      </tr><tr>
+          <td>
+              <div style='float:left'><a href="#saveSettings">saveSettings()</a></div>
+
+              <div style='float:right'>
+              
+              <span class='label label-success'>public</span>
+              </div>
+              <div style="clear:both"></div>
+          </td>
+          <td class="description_column">
+              <p>Saves the settings from to the target user table.</p>
+          </td>
+      </tr><tr>
+          <td>
+              <div style='float:left'><a href="#saveSettingsData">saveSettingsData()</a></div>
+
+              <div style='float:right'>
+              
+              <span class='label label-warning'>protected</span>
+              </div>
+              <div style="clear:both"></div>
+          </td>
+          <td class="description_column">
+              <p>This is internal auxiliary function for storing the settings
+to the target user table defined by the iniailization.</p>
+          </td>
+      </tr><tr>
+          <td>
+              <div style='float:left'><a href="#setContext">setContext()</a></div>
+
+              <div style='float:right'>
+              
+              <span class='label label-success'>public</span>
+              </div>
+              <div style="clear:both"></div>
+          </td>
+          <td class="description_column">
+              <p>Sets the settings context.</p>
+          </td>
+      </tr><tr>
+          <td>
+              <div style='float:left'><a href="#setParameter">setParameter()</a></div>
+
+              <div style='float:right'>
+              
+              <span class='label label-success'>public</span>
+              </div>
+              <div style="clear:both"></div>
+          </td>
+          <td class="description_column">
+              <p>Sets a settings parameter.</p>
+          </td>
+      </tr><tr>
+          <td>
+              <div style='float:left'><a href="#setParameters">setParameters()</a></div>
+
+              <div style='float:right'>
+              
+              <span class='label label-success'>public</span>
+              </div>
+              <div style="clear:both"></div>
+          </td>
+          <td class="description_column">
+              <p>Sets settings parameters from an array.</p>
+          </td>
+      </tr><tr>
+          <td>
+              <div style='float:left'><a href="#setUserID">setUserID()</a></div>
+
+              <div style='float:right'>
+              
+              <span class='label label-success'>public</span>
+              </div>
+              <div style="clear:both"></div>
+          </td>
+          <td class="description_column">
+              <p>Sets the user id to be used for loading settings.</p>
+          </td>
+      </tr><tr>
+          <td>
+              <div style='float:left'><a href="#setValidator">setValidator()</a></div>
+
+              <div style='float:right'>
+              
+              <span class='label label-success'>public</span>
+              </div>
+              <div style="clear:both"></div>
+          </td>
+          <td class="description_column">
+              <p>Sets the validator for the settings.</p>
+          </td>
+      </tr><tr>
+          <td>
+              <div style='float:left'><a href="#validateParameters">validateParameters()</a></div>
+
+              <div style='float:right'>
+              
+              <span class='label label-warning'>protected</span>
+              </div>
+              <div style="clear:both"></div>
+          </td>
+          <td class="description_column">
+              <p>This is internal auxiliary function for checking that the settings
+manager is intialized correctly.</p>
+          </td>
+      </tr><tr>
+          <td>
+              <div style='float:left'><a href="#validateSettings">validateSettings()</a></div>
+
+              <div style='float:right'>
+              
+              <span class='label label-success'>public</span>
+              </div>
+              <div style="clear:both"></div>
+          </td>
+          <td class="description_column">
+              <p>Validates the current settings values.</p>
+          </td>
+      </tr>
+      
+  </table>
+
+
+
+<hr id="$context">
+  
+  <h1>Property: UserSettingsManager::$context</h1>
+
+  <div class="definition"><span class="php-keyword1">protected</span> string <span class="php-var">$context</span> = <span class="php-quote">&quot;default&quot;</span>;</div>
+
+  
+  <div class="short-description">
+  <p>Internal variable for storing the current context.</p>
+  </div>
+  
+
+  
+
+  
+  <h2>Type</h2>
+  <div class="item_list">
+  string
+  </div>
+  
+
+  
+
+  <h2>Authors</h2>
+  <div class="item_list">
+  
+  <div class='item'>Oleg Schildt</div>
+  
+  </div>
+
+  
+
+  
+
+  
+  <h2>Source code</h2>
+  <div class="item_list">
+  <a href='source-SmartFactory.UserSettingsManager.php.html#84'>SmartFactory/UserSettingsManager.php</a>
+  </div>
+  
+
+  <h2>See also</h2>
+  <div class="item_list">
+  
+  <a href='class-SmartFactory.UserSettingsManager.html#getContext'>\SmartFactory\UserSettingsManager::getContext()</a><br>
+  
+  
+  <a href='class-SmartFactory.UserSettingsManager.html#setContext'>\SmartFactory\UserSettingsManager::setContext()</a><br>
+  
+  
+  </div><hr id="$dbworker">
+  
+  <h1>Property: UserSettingsManager::$dbworker</h1>
+
+  <div class="definition"><span class="php-keyword1">protected</span> \SmartFactory\DatabaseWorkers\DBWorker <span class="php-var">$dbworker</span>;</div>
+
+  
+  <div class="short-description">
+  <p>Internal variable for storing the dbworker.</p>
+  </div>
+  
+
+  
+
+  
+  <h2>Type</h2>
+  <div class="item_list">
+  <a href='class-SmartFactory.DatabaseWorkers.DBWorker.html'>\SmartFactory\DatabaseWorkers\DBWorker</a>
+  </div>
+  
+
+  
+
+  <h2>Authors</h2>
+  <div class="item_list">
+  
+  <div class='item'>Oleg Schildt</div>
+  
+  </div>
+
+  
+
+  
+
+  
+  <h2>Source code</h2>
+  <div class="item_list">
+  <a href='source-SmartFactory.UserSettingsManager.php.html#54'>SmartFactory/UserSettingsManager.php</a>
+  </div><hr id="$multichoice_tables">
+  
+  <h1>Property: UserSettingsManager::$multichoice_tables</h1>
+
+  <div class="definition"><span class="php-keyword1">protected</span> <span class="php-keyword1">array</span> <span class="php-var">$multichoice_tables</span>;</div>
+
+  
+  <div class="short-description">
+  <p>Internal array for storing the auxiliary tables for storing the multichoce values.</p>
+  </div>
+  
+
+  
+
+  
+  <h2>Type</h2>
+  <div class="item_list">
+  array
+  </div>
+  
+
+  
+
+  <h2>Authors</h2>
+  <div class="item_list">
+  
+  <div class='item'>Oleg Schildt</div>
+  
+  </div>
+
+  
+
+  
+
+  
+  <h2>Source code</h2>
+  <div class="item_list">
+  <a href='source-SmartFactory.UserSettingsManager.php.html#72'>SmartFactory/UserSettingsManager.php</a>
+  </div><hr id="$settings">
+  
+  <h1>Property: UserSettingsManager::$settings</h1>
+
+  <div class="definition"><span class="php-keyword1">protected</span> <span class="php-keyword1">array</span> <span class="php-var">$settings</span> = [];</div>
+
+  
+  <div class="short-description">
+  <p>Internal variable for storing the array of the settings values.</p>
+  </div>
+  
+
+  
+
+  
+  <h2>Type</h2>
+  <div class="item_list">
+  array
+  </div>
+  
+
+  
+
+  <h2>Authors</h2>
+  <div class="item_list">
+  
+  <div class='item'>Oleg Schildt</div>
+  
+  </div>
+
+  
+
+  
+
+  
+  <h2>Source code</h2>
+  <div class="item_list">
+  <a href='source-SmartFactory.UserSettingsManager.php.html#105'>SmartFactory/UserSettingsManager.php</a>
+  </div><hr id="$settings_tables">
+  
+  <h1>Property: UserSettingsManager::$settings_tables</h1>
+
+  <div class="definition"><span class="php-keyword1">protected</span> <span class="php-keyword1">array</span> <span class="php-var">$settings_tables</span>;</div>
+
+  
+  <div class="short-description">
+  <p>Internal array for storing the settings tables.</p>
+  </div>
+  
+
+  
+
+  
+  <h2>Type</h2>
+  <div class="item_list">
+  array
+  </div>
+  
+
+  
+
+  <h2>Authors</h2>
+  <div class="item_list">
+  
+  <div class='item'>Oleg Schildt</div>
+  
+  </div>
+
+  
+
+  
+
+  
+  <h2>Source code</h2>
+  <div class="item_list">
+  <a href='source-SmartFactory.UserSettingsManager.php.html#63'>SmartFactory/UserSettingsManager.php</a>
+  </div><hr id="$user_id">
+  
+  <h1>Property: UserSettingsManager::$user_id</h1>
+
+  <div class="definition"><span class="php-keyword1">protected</span> string <span class="php-var">$user_id</span> = <span class="php-quote">&quot;&quot;</span>;</div>
+
+  
+  <div class="short-description">
+  <p>Internal variable for storing the user id.</p>
+  </div>
+  
+
+  
+
+  
+  <h2>Type</h2>
+  <div class="item_list">
+  string
+  </div>
+  
+
+  
+
+  <h2>Authors</h2>
+  <div class="item_list">
+  
+  <div class='item'>Oleg Schildt</div>
+  
+  </div>
+
+  
+
+  
+
+  
+  <h2>Source code</h2>
+  <div class="item_list">
+  <a href='source-SmartFactory.UserSettingsManager.php.html#45'>SmartFactory/UserSettingsManager.php</a>
+  </div>
+  
+
+  <h2>See also</h2>
+  <div class="item_list">
+  
+  <a href='class-SmartFactory.UserSettingsManager.html#setUserID'>\SmartFactory\UserSettingsManager::setUserID()</a><br>
+  
+  
+  </div><hr id="$validator">
+  
+  <h1>Property: UserSettingsManager::$validator</h1>
+
+  <div class="definition"><span class="php-keyword1">protected</span> \SmartFactory\Interfaces\ISettingsValidator <span class="php-var">$validator</span> = <span class="php-keyword1">null</span>;</div>
+
+  
+  <div class="short-description">
+  <p>Internal variable for storing the validator.</p>
+  </div>
+  
+
+  
+
+  
+  <h2>Type</h2>
+  <div class="item_list">
+  <a href='interface-SmartFactory.Interfaces.ISettingsValidator.html'>\SmartFactory\Interfaces\ISettingsValidator</a>
+  </div>
+  
+
+  
+
+  <h2>Authors</h2>
+  <div class="item_list">
+  
+  <div class='item'>Oleg Schildt</div>
+  
+  </div>
+
+  
+
+  
+
+  
+  <h2>Source code</h2>
+  <div class="item_list">
+  <a href='source-SmartFactory.UserSettingsManager.php.html#96'>SmartFactory/UserSettingsManager.php</a>
+  </div>
+  
+
+  <h2>See also</h2>
+  <div class="item_list">
+  
+  <a href='class-SmartFactory.UserSettingsManager.html#getValidator'>\SmartFactory\UserSettingsManager::getValidator()</a><br>
+  
+  
+  <a href='class-SmartFactory.UserSettingsManager.html#setValidator'>\SmartFactory\UserSettingsManager::setValidator()</a><br>
+  
+  
+  </div>
+
+<hr id="getContext">
+  
+  <h1>Method: UserSettingsManager::getContext()</h1>
+
+  <div class="definition"><span class="php-keyword1">public</span> <span class="php-keyword1">function</span> getContext() : string;</div>
+
+  
+  <div class="short-description">
+  <p>Returns the current settings context.</p>
+  </div>
+  
+
+  
+  <div class="long_description">
+  <h2>Details</h2>
+  <p>Settings might be edited not in one dialog,
+There can be several masks for different type of settings,
+or the settings can be configured in a wizard.
+In this case, only a subset of settings has to be
+saved and validated.
+To be able to write a flexible validator for the subsets,
+the $context is used. It can be - step1, step1, server_settings,
+db_connection_settings etc.</p>
+  </div>
+  
+
+  
+
+  
+
+  
+  <h2>Returns</h2>
+  <div class="item_list">
+  string<br>
+  
+  <div class="item_description"><p>Returns the current settings context.</p></div>
+  
+  </div>
+  
+
+  
+
+  
+  <h2>Overrides</h2>
+  <div class="item_list">
+  <a href='interface-SmartFactory.Interfaces.ISettingsManager.html#getContext'>\SmartFactory\Interfaces\ISettingsManager::getContext()</a>
+  </div>
+  
+
+  <h2>Authors</h2>
+  <div class="item_list">
+  
+  <div class='item'>Oleg Schildt</div>
+  
+  </div>
+
+  
+
+  
+
+  
+  <h2>Source code</h2>
+  <div class="item_list">
+  <a href='source-SmartFactory.UserSettingsManager.php.html#561'>SmartFactory/UserSettingsManager.php</a>
+  </div>
+  
+
+  <h2>See also</h2>
+  <div class="item_list">
+  
+  <a href='class-SmartFactory.UserSettingsManager.html#setContext'>\SmartFactory\UserSettingsManager::setContext()</a><br>
+  
+  
+  </div>
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  <hr id="getParameter">
+  
+  <h1>Method: UserSettingsManager::getParameter()</h1>
+
+  <div class="definition"><span class="php-keyword1">public</span> <span class="php-keyword1">function</span> getParameter(string <span class="php-var">$name</span>, mixed <span class="php-var">$default</span> = <span class="php-keyword1">null</span>) : mixed;</div>
+
+  
+  <div class="short-description">
+  <p>Returns the value of a settings parameter.</p>
+  </div>
+  
+
+  
+
+  
+
+  <h2>Parameters</h2>
+
+    <table class="table table-responsive table-bordered table-striped param_multicolumn">
+        <tr>
+        <th>Name</th>
+        <th>Pass type</th>
+        <th>Value type</th>
+        <th>Default value</th>
+        <th>Description</th>
+        </tr>
+        
+        
+        <tr>
+            <td>
+                $name
+            </td>
+            <td>
+                by value
+            </td>
+            <td>
+                string
+            </td>
+            <td>
+                
+            </td>
+            <td class="description_column">
+                <p>The name of the settings parameter.</p>
+            </td>
+        </tr>
+        
+        <tr>
+            <td>
+                $default
+            </td>
+            <td>
+                by value
+            </td>
+            <td>
+                mixed
+            </td>
+            <td>
+                null
+            </td>
+            <td class="description_column">
+                <p>The default value of the settings parameter if it is not set yet.
+The parameter is a confortable way to pre-set a parameter
+to a default value if its value is not set yet.</p>
+            </td>
+        </tr>
+        
+        
+    </table>
+
+  
+  <h2>Returns</h2>
+  <div class="item_list">
+  mixed<br>
+  
+  <div class="item_description"><p>Returns the value of the settings parameter.</p></div>
+  
+  </div>
+  
+
+  <h2>Throws</h2>
+  <div class="item_list">
+  
+  \Exception<br>
+  
+  <div class="item_description"><p>It might throw an exception in the case of any errors:</p>
+<ul>
+<li>if some parameters are missing.</li>
+<li>if dbworker does not extend <a href='class-SmartFactory.DatabaseWorkers.DBWorker.html'>\SmartFactory\DatabaseWorkers\DBWorker</a>.</li>
+<li>if some parameters are not of the proper type.</li>
+<li>if the query fails or if some object names are invalid.</li>
+</ul></div>
+  
+  
+  </div>
+
+  
+  <h2>Overrides</h2>
+  <div class="item_list">
+  <a href='interface-SmartFactory.Interfaces.ISettingsManager.html#getParameter'>\SmartFactory\Interfaces\ISettingsManager::getParameter()</a>
+  </div>
+  
+
+  <h2>Authors</h2>
+  <div class="item_list">
+  
+  <div class='item'>Oleg Schildt</div>
+  
+  </div>
+
+  
+
+  
+
+  
+  <h2>Source code</h2>
+  <div class="item_list">
+  <a href='source-SmartFactory.UserSettingsManager.php.html#669'>SmartFactory/UserSettingsManager.php</a>
+  </div>
+  
+
+  <h2>See also</h2>
+  <div class="item_list">
+  
+  <a href='class-SmartFactory.UserSettingsManager.html#setParameter'>\SmartFactory\UserSettingsManager::setParameter()</a><br>
+  
+  
+  <a href='class-SmartFactory.UserSettingsManager.html#setParameters'>\SmartFactory\UserSettingsManager::setParameters()</a><br>
+  
+  
+  </div>
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  <hr id="getUserID">
+  
+  <h1>Method: UserSettingsManager::getUserID()</h1>
+
+  <div class="definition"><span class="php-keyword1">public</span> <span class="php-keyword1">function</span> getUserID() : int|<span class="php-keyword1">null</span>;</div>
+
+  
+  <div class="short-description">
+  <p>Gets the user id to be used for loading settings.</p>
+  </div>
+  
+
+  
+
+  
+
+  
+
+  
+  <h2>Returns</h2>
+  <div class="item_list">
+  int|null<br>
+  
+  <div class="item_description"><p>Returns the user id or null if not set.</p></div>
+  
+  </div>
+  
+
+  
+
+  
+
+  <h2>Authors</h2>
+  <div class="item_list">
+  
+  <div class='item'>Oleg Schildt</div>
+  
+  </div>
+
+  
+
+  
+
+  
+  <h2>Source code</h2>
+  <div class="item_list">
+  <a href='source-SmartFactory.UserSettingsManager.php.html#790'>SmartFactory/UserSettingsManager.php</a>
+  </div>
+  
+
+  <h2>See also</h2>
+  <div class="item_list">
+  
+  <a href='class-SmartFactory.UserSettingsManager.html#setUserID'>\SmartFactory\UserSettingsManager::setUserID()</a><br>
+  
+  
+  </div>
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  <hr id="getValidator">
+  
+  <h1>Method: UserSettingsManager::getValidator()</h1>
+
+  <div class="definition"><span class="php-keyword1">public</span> <span class="php-keyword1">function</span> getValidator() : \SmartFactory\Interfaces\ISettingsValidator|<span class="php-keyword1">null</span>;</div>
+
+  
+  <div class="short-description">
+  <p>Returns the validator for the settings.</p>
+  </div>
+  
+
+  
+
+  
+
+  
+
+  
+  <h2>Returns</h2>
+  <div class="item_list">
+  <a href='interface-SmartFactory.Interfaces.ISettingsValidator.html'>\SmartFactory\Interfaces\ISettingsValidator</a>|null<br>
+  
+  <div class="item_description"><p>Returns the validator for the settings or null if none is defined.</p></div>
+  
+  </div>
+  
+
+  
+
+  
+  <h2>Overrides</h2>
+  <div class="item_list">
+  <a href='interface-SmartFactory.Interfaces.ISettingsManager.html#getValidator'>\SmartFactory\Interfaces\ISettingsManager::getValidator()</a>
+  </div>
+  
+
+  <h2>Authors</h2>
+  <div class="item_list">
+  
+  <div class='item'>Oleg Schildt</div>
+  
+  </div>
+
+  
+
+  
+
+  
+  <h2>Source code</h2>
+  <div class="item_list">
+  <a href='source-SmartFactory.UserSettingsManager.php.html#511'>SmartFactory/UserSettingsManager.php</a>
+  </div>
+  
+
+  <h2>See also</h2>
+  <div class="item_list">
+  
+  <a href='class-SmartFactory.UserSettingsManager.html#setValidator'>\SmartFactory\UserSettingsManager::setValidator()</a><br>
+  
+  
+  <a href='class-SmartFactory.UserSettingsManager.html#validateSettings'>\SmartFactory\UserSettingsManager::validateSettings()</a><br>
+  
+  
+  </div>
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  <hr id="init">
+  
+  <h1>Method: UserSettingsManager::init()</h1>
+
+  <div class="definition"><span class="php-keyword1">public</span> <span class="php-keyword1">function</span> init(<span class="php-keyword1">array</span> <span class="php-var">$parameters</span>) : bool;</div>
+
+  
+  <div class="short-description">
+  <p>Initializes the settings manager parameters.</p>
+  </div>
+  
+
+  
+
+  
+
+  <h2>Parameters</h2>
+
+    <table class="table table-responsive table-bordered table-striped param_multicolumn">
+        <tr>
+        <th>Name</th>
+        <th>Pass type</th>
+        <th>Value type</th>
+        <th>Default value</th>
+        <th>Description</th>
+        </tr>
+        
+        
+        <tr>
+            <td>
+                $parameters
+            </td>
+            <td>
+                by value
+            </td>
+            <td>
+                array
+            </td>
+            <td>
+                
+            </td>
+            <td class="description_column">
+                <p>Settings for saving and loading as an associative array in the form key =&gt; value:</p>
+<ul>
+<li>$parameters[&quot;dbworker&quot;] - the dbworker to used for loading and storing settings.</li>
+<li>$parameters[&quot;settings_tables&quot;] - the definitions of the settings tables.</li>
+<li>$parameters[&quot;multichoice_tables&quot;] - the definitions of the auxiliary tables for the multichoice values.</li>
+</ul>
+<p>Example:</p>
+<pre><code class="language-php">  <span class="php-var">$instance</span>-&gt;init([
+          <span class="php-quote">&quot;dbworker&quot;</span> =&gt; app_dbworker(),
+
+          <span class="php-quote">&quot;settings_tables&quot;</span> =&gt; [
+               <span class="php-quote">&quot;USERS&quot;</span> =&gt; [
+                   <span class="php-quote">&quot;ID&quot;</span> =&gt; DBWorker::DB_NUMBER,
+                   <span class="php-quote">&quot;LANGUAGE&quot;</span> =&gt; DBWorker::DB_STRING,
+                   <span class="php-quote">&quot;TIME_ZONE&quot;</span> =&gt; DBWorker::DB_STRING
+                 ],
+               <span class="php-quote">&quot;USER_FORUM_SETTINGS&quot;</span> =&gt; [
+                   <span class="php-quote">&quot;USER_ID&quot;</span> =&gt; DBWorker::DB_NUMBER,
+                   <span class="php-quote">&quot;SIGNATURE&quot;</span> =&gt; DBWorker::DB_STRING,
+                   <span class="php-quote">&quot;STATUS&quot;</span> =&gt; DBWorker::DB_STRING,
+                   <span class="php-quote">&quot;HIDE_PICTURES&quot;</span> =&gt; DBWorker::DB_NUMBER,
+                   <span class="php-quote">&quot;HIDE_SIGNATURES&quot;</span> =&gt; DBWorker::DB_NUMBER
+                 ]
+          ],
+
+          <span class="php-quote">&quot;multichoice_tables&quot;</span> =&gt; [
+               <span class="php-quote">&quot;USER_COLORS&quot;</span> =&gt; [
+                   <span class="php-quote">&quot;USER_ID&quot;</span> =&gt; DBWorker::DB_NUMBER,
+                   <span class="php-quote">&quot;COLOR&quot;</span> =&gt; DBWorker::DB_STRING
+                 ]
+          ]
+  ]);</code></pre>
+            </td>
+        </tr>
+        
+        
+    </table>
+
+  
+  <h2>Returns</h2>
+  <div class="item_list">
+  bool<br>
+  
+  <div class="item_description"><p>Returns true upon successful initialization, otherwise false.</p></div>
+  
+  </div>
+  
+
+  <h2>Throws</h2>
+  <div class="item_list">
+  
+  \Exception<br>
+  
+  <div class="item_description"><p>It might throw an exception in the case of any errors:</p>
+<ul>
+<li>if some parameters are missing.</li>
+<li>if dbworker does not extend <a href='class-SmartFactory.DatabaseWorkers.DBWorker.html'>\SmartFactory\DatabaseWorkers\DBWorker</a>.</li>
+<li>if some parameters are not of the proper type.</li>
+</ul></div>
+  
+  
+  </div>
+
+  
+  <h2>Overrides</h2>
+  <div class="item_list">
+  <a href='interface-SmartFactory.Interfaces.ISettingsManager.html#init'>\SmartFactory\Interfaces\ISettingsManager::init()</a>
+  </div>
+  
+
+  <h2>Authors</h2>
+  <div class="item_list">
+  
+  <div class='item'>Oleg Schildt</div>
+  
+  </div>
+
+  
+
+  
+
+  
+  <h2>Source code</h2>
+  <div class="item_list">
+  <a href='source-SmartFactory.UserSettingsManager.php.html#466'>SmartFactory/UserSettingsManager.php</a>
+  </div>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  <hr id="loadSettings">
+  
+  <h1>Method: UserSettingsManager::loadSettings()</h1>
+
+  <div class="definition"><span class="php-keyword1">public</span> <span class="php-keyword1">function</span> loadSettings() : bool;</div>
+
+  
+  <div class="short-description">
+  <p>Loads the settings from the target user table.</p>
+  </div>
+  
+
+  
+  <div class="long_description">
+  <h2>Details</h2>
+  <p>The user ID must be set before loading settings, see <a href='class-SmartFactory.UserSettingsManager.html#setUserID'>\SmartFactory\UserSettingsManager::setUserID()</a>.</p>
+  </div>
+  
+
+  
+
+  
+
+  
+  <h2>Returns</h2>
+  <div class="item_list">
+  bool<br>
+  
+  <div class="item_description"><p>Returns true if the settings have been successfully loaded, otherwise false.</p></div>
+  
+  </div>
+  
+
+  <h2>Throws</h2>
+  <div class="item_list">
+  
+  \Exception<br>
+  
+  <div class="item_description"><p>It might throw an exception in the case of any errors:</p>
+<ul>
+<li>if some parameters are missing.</li>
+<li>if dbworker does not extend <a href='class-SmartFactory.DatabaseWorkers.DBWorker.html'>\SmartFactory\DatabaseWorkers\DBWorker</a>.</li>
+<li>if some parameters are not of the proper type.</li>
+<li>if the query fails or if some object names are invalid.</li>
+</ul></div>
+  
+  
+  </div>
+
+  
+  <h2>Overrides</h2>
+  <div class="item_list">
+  <a href='interface-SmartFactory.Interfaces.ISettingsManager.html#loadSettings'>\SmartFactory\Interfaces\ISettingsManager::loadSettings()</a>
+  </div>
+  
+
+  <h2>Authors</h2>
+  <div class="item_list">
+  
+  <div class='item'>Oleg Schildt</div>
+  
+  </div>
+
+  
+
+  
+
+  
+  <h2>Source code</h2>
+  <div class="item_list">
+  <a href='source-SmartFactory.UserSettingsManager.php.html#728'>SmartFactory/UserSettingsManager.php</a>
+  </div>
+  
+
+  <h2>See also</h2>
+  <div class="item_list">
+  
+  <a href='class-SmartFactory.UserSettingsManager.html#saveSettings'>\SmartFactory\UserSettingsManager::saveSettings()</a><br>
+  
+  
+  </div>
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  <hr id="loadSettingsData">
+  
+  <h1>Method: UserSettingsManager::loadSettingsData()</h1>
+
+  <div class="definition"><span class="php-keyword1">protected</span> <span class="php-keyword1">function</span> loadSettingsData(<span class="php-keyword1">array</span> &amp;<span class="php-var">$data</span>) : bool;</div>
+
+  
+  <div class="short-description">
+  <p>This is internal auxiliary function for loading the settings from the target user table
+defined by the iniailization.</p>
+  </div>
+  
+
+  
+
+  
+
+  <h2>Parameters</h2>
+
+    <table class="table table-responsive table-bordered table-striped param_multicolumn">
+        <tr>
+        <th>Name</th>
+        <th>Pass type</th>
+        <th>Value type</th>
+        <th>Default value</th>
+        <th>Description</th>
+        </tr>
+        
+        
+        <tr>
+            <td>
+                $data
+            </td>
+            <td>
+                by reference
+            </td>
+            <td>
+                array
+            </td>
+            <td>
+                
+            </td>
+            <td class="description_column">
+                <p>The target array with the settings values to be loaded.</p>
+            </td>
+        </tr>
+        
+        
+    </table>
+
+  
+  <h2>Returns</h2>
+  <div class="item_list">
+  bool<br>
+  
+  <div class="item_description"><p>Returns true if the data has been successfully loaded, otherwise false.</p></div>
+  
+  </div>
+  
+
+  <h2>Throws</h2>
+  <div class="item_list">
+  
+  \Exception<br>
+  
+  <div class="item_description"><p>It might throw an exception in the case of any errors:</p>
+<ul>
+<li>if the query fails or if some object names are invalid.</li>
+<li>if some parameters are missing.</li>
+<li>if dbworker does not extend <a href='class-SmartFactory.DatabaseWorkers.DBWorker.html'>\SmartFactory\DatabaseWorkers\DBWorker</a>.</li>
+<li>if some parameters are not of the proper type.</li>
+<li>if the query fails or if some object names are invalid.</li>
+</ul></div>
+  
+  
+  </div>
+
+  
+
+  <h2>Authors</h2>
+  <div class="item_list">
+  
+  <div class='item'>Oleg Schildt</div>
+  
+  </div>
+
+  
+
+  
+
+  
+  <h2>Source code</h2>
+  <div class="item_list">
+  <a href='source-SmartFactory.UserSettingsManager.php.html#330'>SmartFactory/UserSettingsManager.php</a>
+  </div>
+  
+
+  <h2>See also</h2>
+  <div class="item_list">
+  
+  <a href='class-SmartFactory.UserSettingsManager.html#saveSettingsData'>\SmartFactory\UserSettingsManager::saveSettingsData()</a><br>
+  
+  
+  </div>
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  <hr id="saveSettings">
+  
+  <h1>Method: UserSettingsManager::saveSettings()</h1>
+
+  <div class="definition"><span class="php-keyword1">public</span> <span class="php-keyword1">function</span> saveSettings() : bool;</div>
+
+  
+  <div class="short-description">
+  <p>Saves the settings from to the target user table.</p>
+  </div>
+  
+
+  
+
+  
+
+  
+
+  
+  <h2>Returns</h2>
+  <div class="item_list">
+  bool<br>
+  
+  <div class="item_description"><p>Returns true if the settings have been successfully saved, otherwise false.</p></div>
+  
+  </div>
+  
+
+  <h2>Throws</h2>
+  <div class="item_list">
+  
+  \Exception<br>
+  
+  <div class="item_description"><p>It might throw an exception in the case of any errors:</p>
+<ul>
+<li>if some parameters are missing.</li>
+<li>if dbworker does not extend <a href='class-SmartFactory.DatabaseWorkers.DBWorker.html'>\SmartFactory\DatabaseWorkers\DBWorker</a>.</li>
+<li>if some parameters are not of the proper type.</li>
+<li>if the query fails or if some object names are invalid.</li>
+</ul></div>
+  
+  
+  </div>
+
+  
+  <h2>Overrides</h2>
+  <div class="item_list">
+  <a href='interface-SmartFactory.Interfaces.ISettingsManager.html#saveSettings'>\SmartFactory\Interfaces\ISettingsManager::saveSettings()</a>
+  </div>
+  
+
+  <h2>Authors</h2>
+  <div class="item_list">
+  
+  <div class='item'>Oleg Schildt</div>
+  
+  </div>
+
+  
+
+  
+
+  
+  <h2>Source code</h2>
+  <div class="item_list">
+  <a href='source-SmartFactory.UserSettingsManager.php.html#751'>SmartFactory/UserSettingsManager.php</a>
+  </div>
+  
+
+  <h2>See also</h2>
+  <div class="item_list">
+  
+  <a href='class-SmartFactory.UserSettingsManager.html#loadSettings'>\SmartFactory\UserSettingsManager::loadSettings()</a><br>
+  
+  
+  </div>
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  <hr id="saveSettingsData">
+  
+  <h1>Method: UserSettingsManager::saveSettingsData()</h1>
+
+  <div class="definition"><span class="php-keyword1">protected</span> <span class="php-keyword1">function</span> saveSettingsData(<span class="php-keyword1">array</span> &amp;<span class="php-var">$data</span>) : bool;</div>
+
+  
+  <div class="short-description">
+  <p>This is internal auxiliary function for storing the settings
+to the target user table defined by the iniailization.</p>
+  </div>
+  
+
+  
+
+  
+
+  <h2>Parameters</h2>
+
+    <table class="table table-responsive table-bordered table-striped param_multicolumn">
+        <tr>
+        <th>Name</th>
+        <th>Pass type</th>
+        <th>Value type</th>
+        <th>Default value</th>
+        <th>Description</th>
+        </tr>
+        
+        
+        <tr>
+            <td>
+                $data
+            </td>
+            <td>
+                by reference
+            </td>
+            <td>
+                array
+            </td>
+            <td>
+                
+            </td>
+            <td class="description_column">
+                <p>The array with the settings values to be saved.</p>
+            </td>
+        </tr>
+        
+        
+    </table>
+
+  
+  <h2>Returns</h2>
+  <div class="item_list">
+  bool<br>
+  
+  <div class="item_description"><p>Returns true if the data has been successfully saved, otherwise false.</p></div>
+  
+  </div>
+  
+
+  <h2>Throws</h2>
+  <div class="item_list">
+  
+  \Throwable<br>
+  
+  <div class="item_description"><p>It might throw an exception in the case of any errors:</p>
+<ul>
+<li>if the query fails or if some object names are invalid.</li>
+<li>if some parameters are missing.</li>
+<li>if dbworker does not extend <a href='class-SmartFactory.DatabaseWorkers.DBWorker.html'>\SmartFactory\DatabaseWorkers\DBWorker</a>.</li>
+<li>if some parameters are not of the proper type.</li>
+<li>if the query fails or if some object names are invalid.</li>
+</ul></div>
+  
+  
+  </div>
+
+  
+
+  <h2>Authors</h2>
+  <div class="item_list">
+  
+  <div class='item'>Oleg Schildt</div>
+  
+  </div>
+
+  
+
+  
+
+  
+  <h2>Source code</h2>
+  <div class="item_list">
+  <a href='source-SmartFactory.UserSettingsManager.php.html#174'>SmartFactory/UserSettingsManager.php</a>
+  </div>
+  
+
+  <h2>See also</h2>
+  <div class="item_list">
+  
+  <a href='class-SmartFactory.UserSettingsManager.html#loadSettingsData'>\SmartFactory\UserSettingsManager::loadSettingsData()</a><br>
+  
+  
+  </div>
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  <h2>Todo</h2>
+  <div class="item_list">
+  <ul>
+  
+  <li><p>Implement additional features.</p></li>
+  
+  </ul>
+  </div><hr id="setContext">
+  
+  <h1>Method: UserSettingsManager::setContext()</h1>
+
+  <div class="definition"><span class="php-keyword1">public</span> <span class="php-keyword1">function</span> setContext(string <span class="php-var">$context</span> = <span class="php-quote">&quot;default&quot;</span>) : void;</div>
+
+  
+  <div class="short-description">
+  <p>Sets the settings context.</p>
+  </div>
+  
+
+  
+  <div class="long_description">
+  <h2>Details</h2>
+  <p>Settings might be edited not in one dialog,
+There can be several masks for different type of settings,
+or the settings can be configured in a wizard.
+In this case, only a subset of settings has to be
+saved and validated.
+To be able to write a flexible validator for the subsets,
+the $context is used. It can be - step1, step1, server_settings,
+db_connection_settings etc.</p>
+  </div>
+  
+
+  
+
+  <h2>Parameters</h2>
+
+    <table class="table table-responsive table-bordered table-striped param_multicolumn">
+        <tr>
+        <th>Name</th>
+        <th>Pass type</th>
+        <th>Value type</th>
+        <th>Default value</th>
+        <th>Description</th>
+        </tr>
+        
+        
+        <tr>
+            <td>
+                $context
+            </td>
+            <td>
+                by value
+            </td>
+            <td>
+                string
+            </td>
+            <td>
+                &quot;default&quot;
+            </td>
+            <td class="description_column">
+                <p>The settings context.</p>
+            </td>
+        </tr>
+        
+        
+    </table>
+
+  
+  <h2>Returns</h2>
+  <div class="item_list">
+  void<br>
+  
+  </div>
+  
+
+  
+
+  
+  <h2>Overrides</h2>
+  <div class="item_list">
+  <a href='interface-SmartFactory.Interfaces.ISettingsManager.html#setContext'>\SmartFactory\Interfaces\ISettingsManager::setContext()</a>
+  </div>
+  
+
+  <h2>Authors</h2>
+  <div class="item_list">
+  
+  <div class='item'>Oleg Schildt</div>
+  
+  </div>
+
+  
+
+  
+
+  
+  <h2>Source code</h2>
+  <div class="item_list">
+  <a href='source-SmartFactory.UserSettingsManager.php.html#537'>SmartFactory/UserSettingsManager.php</a>
+  </div>
+  
+
+  <h2>See also</h2>
+  <div class="item_list">
+  
+  <a href='class-SmartFactory.UserSettingsManager.html#getContext'>\SmartFactory\UserSettingsManager::getContext()</a><br>
+  
+  
+  </div>
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  <hr id="setParameter">
+  
+  <h1>Method: UserSettingsManager::setParameter()</h1>
+
+  <div class="definition"><span class="php-keyword1">public</span> <span class="php-keyword1">function</span> setParameter(string <span class="php-var">$name</span>, mixed <span class="php-var">$value</span>) : void;</div>
+
+  
+  <div class="short-description">
+  <p>Sets a settings parameter.</p>
+  </div>
+  
+
+  
+
+  
+
+  <h2>Parameters</h2>
+
+    <table class="table table-responsive table-bordered table-striped param_multicolumn">
+        <tr>
+        <th>Name</th>
+        <th>Pass type</th>
+        <th>Value type</th>
+        <th>Default value</th>
+        <th>Description</th>
+        </tr>
+        
+        
+        <tr>
+            <td>
+                $name
+            </td>
+            <td>
+                by value
+            </td>
+            <td>
+                string
+            </td>
+            <td>
+                
+            </td>
+            <td class="description_column">
+                <p>The name of the settings parameter.</p>
+            </td>
+        </tr>
+        
+        <tr>
+            <td>
+                $value
+            </td>
+            <td>
+                by value
+            </td>
+            <td>
+                mixed
+            </td>
+            <td>
+                
+            </td>
+            <td class="description_column">
+                <p>The value of the settings parameter.</p>
+            </td>
+        </tr>
+        
+        
+    </table>
+
+  
+  <h2>Returns</h2>
+  <div class="item_list">
+  void<br>
+  
+  </div>
+  
+
+  <h2>Throws</h2>
+  <div class="item_list">
+  
+  \Exception<br>
+  
+  <div class="item_description"><p>It might throw an exception in the case of any errors:</p>
+<ul>
+<li>if some parameters are missing.</li>
+<li>if dbworker does not extend <a href='class-SmartFactory.DatabaseWorkers.DBWorker.html'>\SmartFactory\DatabaseWorkers\DBWorker</a>.</li>
+<li>if some parameters are not of the proper type.</li>
+<li>if the query fails or if some object names are invalid.</li>
+</ul></div>
+  
+  
+  </div>
+
+  
+  <h2>Overrides</h2>
+  <div class="item_list">
+  <a href='interface-SmartFactory.Interfaces.ISettingsManager.html#setParameter'>\SmartFactory\Interfaces\ISettingsManager::setParameter()</a>
+  </div>
+  
+
+  <h2>Authors</h2>
+  <div class="item_list">
+  
+  <div class='item'>Oleg Schildt</div>
+  
+  </div>
+
+  
+
+  
+
+  
+  <h2>Source code</h2>
+  <div class="item_list">
+  <a href='source-SmartFactory.UserSettingsManager.php.html#590'>SmartFactory/UserSettingsManager.php</a>
+  </div>
+  
+
+  <h2>See also</h2>
+  <div class="item_list">
+  
+  <a href='class-SmartFactory.UserSettingsManager.html#getParameter'>\SmartFactory\UserSettingsManager::getParameter()</a><br>
+  
+  
+  <a href='class-SmartFactory.UserSettingsManager.html#setParameters'>\SmartFactory\UserSettingsManager::setParameters()</a><br>
+  
+  
+  </div>
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  <hr id="setParameters">
+  
+  <h1>Method: UserSettingsManager::setParameters()</h1>
+
+  <div class="definition"><span class="php-keyword1">public</span> <span class="php-keyword1">function</span> setParameters(<span class="php-keyword1">array</span> &amp;<span class="php-var">$parameters</span>, bool <span class="php-var">$force_creation</span> = <span class="php-keyword1">false</span>) : void;</div>
+
+  
+  <div class="short-description">
+  <p>Sets settings parameters from an array.</p>
+  </div>
+  
+
+  
+
+  
+
+  <h2>Parameters</h2>
+
+    <table class="table table-responsive table-bordered table-striped param_multicolumn">
+        <tr>
+        <th>Name</th>
+        <th>Pass type</th>
+        <th>Value type</th>
+        <th>Default value</th>
+        <th>Description</th>
+        </tr>
+        
+        
+        <tr>
+            <td>
+                $parameters
+            </td>
+            <td>
+                by reference
+            </td>
+            <td>
+                array
+            </td>
+            <td>
+                
+            </td>
+            <td class="description_column">
+                <p>Array of parameters in the form key =&gt; value.</p>
+            </td>
+        </tr>
+        
+        <tr>
+            <td>
+                $force_creation
+            </td>
+            <td>
+                by value
+            </td>
+            <td>
+                bool
+            </td>
+            <td>
+                false
+            </td>
+            <td class="description_column">
+                <p>Flag which defines whether the parameter should be created
+if not exists. If false, only existing parameters are updated.
+In the UserSettingsManager, this pflag is ignored, because
+the paramters are mapped to the database fields and cannot be created
+on the fly.</p>
+            </td>
+        </tr>
+        
+        
+    </table>
+
+  
+  <h2>Returns</h2>
+  <div class="item_list">
+  void<br>
+  
+  </div>
+  
+
+  <h2>Throws</h2>
+  <div class="item_list">
+  
+  \Exception<br>
+  
+  <div class="item_description"><p>It might throw an exception in the case of any errors:</p>
+<ul>
+<li>if some parameters are missing.</li>
+<li>if dbworker does not extend <a href='class-SmartFactory.DatabaseWorkers.DBWorker.html'>\SmartFactory\DatabaseWorkers\DBWorker</a>.</li>
+<li>if the query fails or if some object names are invalid.</li>
+<li>if the config file is not readable.</li>
+</ul></div>
+  
+  
+  </div>
+
+  
+  <h2>Overrides</h2>
+  <div class="item_list">
+  <a href='interface-SmartFactory.Interfaces.ISettingsManager.html#setParameters'>\SmartFactory\Interfaces\ISettingsManager::setParameters()</a>
+  </div>
+  
+
+  <h2>Authors</h2>
+  <div class="item_list">
+  
+  <div class='item'>Oleg Schildt</div>
+  
+  </div>
+
+  
+
+  
+
+  
+  <h2>Source code</h2>
+  <div class="item_list">
+  <a href='source-SmartFactory.UserSettingsManager.php.html#627'>SmartFactory/UserSettingsManager.php</a>
+  </div>
+  
+
+  <h2>See also</h2>
+  <div class="item_list">
+  
+  <a href='class-SmartFactory.UserSettingsManager.html#getParameter'>\SmartFactory\UserSettingsManager::getParameter()</a><br>
+  
+  
+  <a href='class-SmartFactory.UserSettingsManager.html#setParameter'>\SmartFactory\UserSettingsManager::setParameter()</a><br>
+  
+  
+  </div>
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  <hr id="setUserID">
+  
+  <h1>Method: UserSettingsManager::setUserID()</h1>
+
+  <div class="definition"><span class="php-keyword1">public</span> <span class="php-keyword1">function</span> setUserID(string <span class="php-var">$user_id</span>) : void;</div>
+
+  
+  <div class="short-description">
+  <p>Sets the user id to be used for loading settings.</p>
+  </div>
+  
+
+  
+  <div class="long_description">
+  <h2>Details</h2>
+  <p>The user ID must be set before loading settings, see <a href='class-SmartFactory.UserSettingsManager.html#loadSettings'>\SmartFactory\UserSettingsManager::loadSettings()</a>.</p>
+  </div>
+  
+
+  
+
+  <h2>Parameters</h2>
+
+    <table class="table table-responsive table-bordered table-striped param_multicolumn">
+        <tr>
+        <th>Name</th>
+        <th>Pass type</th>
+        <th>Value type</th>
+        <th>Default value</th>
+        <th>Description</th>
+        </tr>
+        
+        
+        <tr>
+            <td>
+                $user_id
+            </td>
+            <td>
+                by value
+            </td>
+            <td>
+                string
+            </td>
+            <td>
+                
+            </td>
+            <td class="description_column">
+                <p>The user ID.</p>
+            </td>
+        </tr>
+        
+        
+    </table>
+
+  
+  <h2>Returns</h2>
+  <div class="item_list">
+  void<br>
+  
+  </div>
+  
+
+  
+
+  
+
+  <h2>Authors</h2>
+  <div class="item_list">
+  
+  <div class='item'>Oleg Schildt</div>
+  
+  </div>
+
+  
+
+  
+
+  
+  <h2>Source code</h2>
+  <div class="item_list">
+  <a href='source-SmartFactory.UserSettingsManager.php.html#775'>SmartFactory/UserSettingsManager.php</a>
+  </div>
+  
+
+  <h2>See also</h2>
+  <div class="item_list">
+  
+  <a href='class-SmartFactory.UserSettingsManager.html#getUserID'>\SmartFactory\UserSettingsManager::getUserID()</a><br>
+  
+  
+  <a href='class-SmartFactory.UserSettingsManager.html#loadSettings'>\SmartFactory\UserSettingsManager::loadSettings()</a><br>
+  
+  
+  </div>
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  <hr id="setValidator">
+  
+  <h1>Method: UserSettingsManager::setValidator()</h1>
+
+  <div class="definition"><span class="php-keyword1">public</span> <span class="php-keyword1">function</span> setValidator(\SmartFactory\Interfaces\ISettingsValidator <span class="php-var">$validator</span>) : void;</div>
+
+  
+  <div class="short-description">
+  <p>Sets the validator for the settings.</p>
+  </div>
+  
+
+  
+
+  
+
+  <h2>Parameters</h2>
+
+    <table class="table table-responsive table-bordered table-striped param_multicolumn">
+        <tr>
+        <th>Name</th>
+        <th>Pass type</th>
+        <th>Value type</th>
+        <th>Default value</th>
+        <th>Description</th>
+        </tr>
+        
+        
+        <tr>
+            <td>
+                $validator
+            </td>
+            <td>
+                by value
+            </td>
+            <td>
+                <a href='interface-SmartFactory.Interfaces.ISettingsValidator.html'>\SmartFactory\Interfaces\ISettingsValidator</a>
+            </td>
+            <td>
+                
+            </td>
+            <td class="description_column">
+                <p>The settings validator.</p>
+            </td>
+        </tr>
+        
+        
+    </table>
+
+  
+  <h2>Returns</h2>
+  <div class="item_list">
+  void<br>
+  
+  </div>
+  
+
+  
+
+  
+  <h2>Overrides</h2>
+  <div class="item_list">
+  <a href='interface-SmartFactory.Interfaces.ISettingsManager.html#setValidator'>\SmartFactory\Interfaces\ISettingsManager::setValidator()</a>
+  </div>
+  
+
+  <h2>Authors</h2>
+  <div class="item_list">
+  
+  <div class='item'>Oleg Schildt</div>
+  
+  </div>
+
+  
+
+  
+
+  
+  <h2>Source code</h2>
+  <div class="item_list">
+  <a href='source-SmartFactory.UserSettingsManager.php.html#495'>SmartFactory/UserSettingsManager.php</a>
+  </div>
+  
+
+  <h2>See also</h2>
+  <div class="item_list">
+  
+  <a href='class-SmartFactory.UserSettingsManager.html#getValidator'>\SmartFactory\UserSettingsManager::getValidator()</a><br>
+  
+  
+  <a href='class-SmartFactory.UserSettingsManager.html#validateSettings'>\SmartFactory\UserSettingsManager::validateSettings()</a><br>
+  
+  
+  </div>
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  <hr id="validateParameters">
+  
+  <h1>Method: UserSettingsManager::validateParameters()</h1>
+
+  <div class="definition"><span class="php-keyword1">protected</span> <span class="php-keyword1">function</span> validateParameters() : bool;</div>
+
+  
+  <div class="short-description">
+  <p>This is internal auxiliary function for checking that the settings
+manager is intialized correctly.</p>
+  </div>
+  
+
+  
+
+  
+
+  
+
+  
+  <h2>Returns</h2>
+  <div class="item_list">
+  bool<br>
+  
+  <div class="item_description"><p>It should return true if the settings manager is intialized correctly, otherwise false.</p></div>
+  
+  </div>
+  
+
+  <h2>Throws</h2>
+  <div class="item_list">
+  
+  \Exception<br>
+  
+  <div class="item_description"><p>It might throw an exception in the case of any errors:</p>
+<ul>
+<li>if some parameters are missing.</li>
+<li>if dbworker does not extend <a href='class-SmartFactory.DatabaseWorkers.DBWorker.html'>\SmartFactory\DatabaseWorkers\DBWorker</a>.</li>
+<li>if some parameters are not of the proper type.</li>
+</ul></div>
+  
+  
+  </div>
+
+  
+
+  <h2>Authors</h2>
+  <div class="item_list">
+  
+  <div class='item'>Oleg Schildt</div>
+  
+  </div>
+
+  
+
+  
+
+  
+  <h2>Source code</h2>
+  <div class="item_list">
+  <a href='source-SmartFactory.UserSettingsManager.php.html#123'>SmartFactory/UserSettingsManager.php</a>
+  </div>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  <hr id="validateSettings">
+  
+  <h1>Method: UserSettingsManager::validateSettings()</h1>
+
+  <div class="definition"><span class="php-keyword1">public</span> <span class="php-keyword1">function</span> validateSettings() : bool;</div>
+
+  
+  <div class="short-description">
+  <p>Validates the current settings values.</p>
+  </div>
+  
+
+  
+  <div class="long_description">
+  <h2>Details</h2>
+  <p>It should be called after settings the new values of the parameters
+and before their saving.</p>
+  </div>
+  
+
+  
+
+  
+
+  
+  <h2>Returns</h2>
+  <div class="item_list">
+  bool<br>
+  
+  <div class="item_description"><p>Returns true if there is no validator defined, otherwise lets
+the validator validate the settings.</p></div>
+  
+  </div>
+  
+
+  
+
+  
+  <h2>Overrides</h2>
+  <div class="item_list">
+  <a href='interface-SmartFactory.Interfaces.ISettingsManager.html#validateSettings'>\SmartFactory\Interfaces\ISettingsManager::validateSettings()</a>
+  </div>
+  
+
+  <h2>Authors</h2>
+  <div class="item_list">
+  
+  <div class='item'>Oleg Schildt</div>
+  
+  </div>
+
+  
+
+  
+
+  
+  <h2>Source code</h2>
+  <div class="item_list">
+  <a href='source-SmartFactory.UserSettingsManager.php.html#699'>SmartFactory/UserSettingsManager.php</a>
+  </div>
+  
+
+  <h2>See also</h2>
+  <div class="item_list">
+  
+  <a href='class-SmartFactory.UserSettingsManager.html#getValidator'>\SmartFactory\UserSettingsManager::getValidator()</a><br>
+  
+  
+  <a href='class-SmartFactory.UserSettingsManager.html#setValidator'>\SmartFactory\UserSettingsManager::setValidator()</a><br>
+  
+  
+  </div>
+
+  
+
+  <h2>Uses</h2>
+  <div class="item_list">
+  
+  <a href='interface-SmartFactory.Interfaces.ISettingsValidator.html'>\SmartFactory\Interfaces\ISettingsValidator</a><br>
+  
+  
+  </div>
+                    
+                    <div id="footer">
+                        Generated on 2022-05-29 12:26 with <a href="https://github.com/oschildt/PhpDoxy" target="_blank">PhpDoxy</a>
+                    </div>                    
+                </div>
+            </div>
+        </div>
+
+        <script src="resources/jquery-3.2.1.min.js"></script>
+        <script src="resources/jquery-ui-1.12.1.min.js"></script>
+
+        <script src="elementlist.js"></script>
+        <script src="resources/main.js"></script>
+        
+        <script src="resources/jquery.iviewer.js" type="text/javascript"></script>
+        <script src="resources/jquery.mousewheel.js" type="text/javascript"></script>
+        
+    </body>
+</html>
+
+

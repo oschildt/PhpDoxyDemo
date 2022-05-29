@@ -1,0 +1,772 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta name="mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+
+        <link rel="stylesheet" href="resources/bootstrap.min.css">
+        <link rel="stylesheet" href="resources/style.css">
+        <link rel="stylesheet" href="resources/jquery.iviewer.css">
+
+        <title>
+            Class: ShardManager
+        </title>
+    </head>
+
+    <body>
+        <div id="navigation">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <nav class="navbar">
+                    <ul class="nav navbar-nav">
+                        
+                        
+                        <li>
+                            <a href="index.html" class="">
+                                Overview
+                            </a>
+                        </li>
+                        
+                        <li>
+                            <a href="classes.html" class="active">
+                                Classes
+                            </a>
+                        </li>
+                        
+                        <li>
+                            <a href="interfaces.html" class="">
+                                Interfaces
+                            </a>
+                        </li>
+                        
+                        <li>
+                            <a href="traits.html" class="">
+                                Traits
+                            </a>
+                        </li>
+                        
+                        <li>
+                            <a href="functions.html" class="">
+                                Functions
+                            </a>
+                        </li>
+                        
+                        <li>
+                            <a href="log.html" class="">
+                                Log
+                            </a>
+                        </li>
+                        
+                        <li>
+                            <a href="structure.html" class="">
+                                Structure
+                            </a>
+                        </li>
+                        
+
+                    </ul>
+
+                    <form id="search" class="pull-right">
+                        <input type="text" name="q" class="form-control text" placeholder="Search class, function or namespace">
+                    </form>
+                </nav>
+            </div>
+        </div>
+    </div>
+</div>
+
+        
+        <div id="breadcrumbs">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+            
+                
+                <div class="pull-left type">
+                    <span class="label label-success">Class</span>
+                </div>
+                
+                
+                <ol class="breadcrumb pull-left">
+                        
+                        
+
+                        <li>
+                            <a href="namespace-SmartFactory.html">SmartFactory</a>
+                        </li>
+
+                        <!-- if separator -->
+                        <li class="backslash">\</li>
+                        <!-- endif separator -->
+
+                        
+
+                        <li>
+                            <a href="namespace-SmartFactory.DatabaseWorkers.html">DatabaseWorkers</a>
+                        </li>
+
+                        <!-- if separator -->
+                        <li class="backslash">\</li>
+                        <!-- endif separator -->
+
+                        
+ 
+
+                        <li class="active">ShardManager</li>
+                </ol>
+                
+            </div>
+        </div>
+    </div>
+</div>
+
+        
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <h1>Class: ShardManager</h1>
+
+
+
+<div class="definition"></div>
+
+
+<div class="short-description">
+<p>Class for managing connections to the DB shards.</p>
+</div>
+
+
+
+<div class="long_description">
+<h2>Details</h2>
+<p>This shard manager allows registering multiple shards and request connections to them.
+It ensures that only one connection to a shard is used within a request.</p>
+</div>
+
+
+
+
+
+
+<h2>Implements</h2>
+<div class="item_list">
+
+<a href='interface-SmartFactory.Interfaces.IShardManager.html'>\SmartFactory\Interfaces\IShardManager</a><br>
+
+</div>
+
+
+
+
+
+<h2>Authors</h2>
+<div class="item_list">
+
+<div class='item'>Oleg Schildt</div>
+
+</div>
+
+
+
+
+
+
+
+
+<h2>Source code</h2>
+<div class="item_list">
+<a href='source-SmartFactory.DatabaseWorkers.ShardManager.php.html#25'>SmartFactory/DatabaseWorkers/ShardManager.php</a>
+</div>
+
+
+<h2>See also</h2>
+<div class="item_list">
+
+<a href='class-SmartFactory.DatabaseWorkers.DBWorker.html'>\SmartFactory\DatabaseWorkers\DBWorker</a><br>
+
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<p>&nbsp;</p>
+
+
+
+<table class="table table-responsive table-bordered table-striped class_multicolumn">
+      <tr><th colspan="2">Properties</th></tr>
+      
+      <tr>
+          <td>
+              <div style='float:left'><a href="#$load_balancing_groups">$load_balancing_groups</a></div>
+
+              <div style='float:right'>
+              
+              <span class='label label-warning'>protected</span>
+              </div>
+              <div style="clear:both"></div>
+          </td>
+          <td class="description_column">
+              <p>Internal array for storing the load balancing groups and its shards.</p>
+          </td>
+      </tr><tr>
+          <td>
+              <div style='float:left'><a href="#$shard_table">$shard_table</a></div>
+
+              <div style='float:right'>
+              
+              <span class='label label-warning'>protected</span>
+              </div>
+              <div style="clear:both"></div>
+          </td>
+          <td class="description_column">
+              <p>Internal array for storing the mapping betwen shard names and connection parameters.</p>
+          </td>
+      </tr>
+      
+  </table>
+
+<table class="table table-responsive table-bordered table-striped class_multicolumn">
+      <tr><th colspan="2">Methods</th></tr>
+      
+      <tr>
+          <td>
+              <div style='float:left'><a href="#dbshard">dbshard()</a></div>
+
+              <div style='float:right'>
+              
+              <span class='label label-success'>public</span>
+              </div>
+              <div style="clear:both"></div>
+          </td>
+          <td class="description_column">
+              <p>The method provides the DBWorker object for working with the shard.</p>
+          </td>
+      </tr><tr>
+          <td>
+              <div style='float:left'><a href="#randomDBShard">randomDBShard()</a></div>
+
+              <div style='float:right'>
+              
+              <span class='label label-success'>public</span>
+              </div>
+              <div style="clear:both"></div>
+          </td>
+          <td class="description_column">
+              <p>The method provides the DBWorker object for working with the shard, that is chosen randomly
+for load balancing reason.</p>
+          </td>
+      </tr><tr>
+          <td>
+              <div style='float:left'><a href="#registerShard">registerShard()</a></div>
+
+              <div style='float:right'>
+              
+              <span class='label label-success'>public</span>
+              </div>
+              <div style="clear:both"></div>
+          </td>
+          <td class="description_column">
+              <p>Registers a new shard.</p>
+          </td>
+      </tr>
+      
+  </table>
+
+
+
+<hr id="$load_balancing_groups">
+  
+  <h1>Property: ShardManager::$load_balancing_groups</h1>
+
+  <div class="definition"><span class="php-keyword1">protected</span> <span class="php-keyword1">array</span> <span class="php-var">$load_balancing_groups</span> = [];</div>
+
+  
+  <div class="short-description">
+  <p>Internal array for storing the load balancing groups and its shards.</p>
+  </div>
+  
+
+  
+
+  
+  <h2>Type</h2>
+  <div class="item_list">
+  array
+  </div>
+  
+
+  
+
+  <h2>Authors</h2>
+  <div class="item_list">
+  
+  <div class='item'>Oleg Schildt</div>
+  
+  </div>
+
+  
+
+  
+
+  
+  <h2>Source code</h2>
+  <div class="item_list">
+  <a href='source-SmartFactory.DatabaseWorkers.ShardManager.php.html#34'>SmartFactory/DatabaseWorkers/ShardManager.php</a>
+  </div><hr id="$shard_table">
+  
+  <h1>Property: ShardManager::$shard_table</h1>
+
+  <div class="definition"><span class="php-keyword1">protected</span> <span class="php-keyword1">array</span> <span class="php-var">$shard_table</span> = [];</div>
+
+  
+  <div class="short-description">
+  <p>Internal array for storing the mapping betwen shard names and connection parameters.</p>
+  </div>
+  
+
+  
+
+  
+  <h2>Type</h2>
+  <div class="item_list">
+  array
+  </div>
+  
+
+  
+
+  <h2>Authors</h2>
+  <div class="item_list">
+  
+  <div class='item'>Oleg Schildt</div>
+  
+  </div>
+
+  
+
+  
+
+  
+  <h2>Source code</h2>
+  <div class="item_list">
+  <a href='source-SmartFactory.DatabaseWorkers.ShardManager.php.html#43'>SmartFactory/DatabaseWorkers/ShardManager.php</a>
+  </div>
+
+<hr id="dbshard">
+  
+  <h1>Method: ShardManager::dbshard()</h1>
+
+  <div class="definition"><span class="php-keyword1">public</span> <span class="php-keyword1">function</span> dbshard(string <span class="php-var">$shard_name</span>) : \SmartFactory\DatabaseWorkers\DBWorker|<span class="php-keyword1">null</span>;</div>
+
+  
+  <div class="short-description">
+  <p>The method provides the DBWorker object for working with the shard.</p>
+  </div>
+  
+
+  
+  <div class="long_description">
+  <h2>Details</h2>
+  <p>If the parameters are omitted, the system takes the parameters from the configuration
+settings and reuses the single instance of the DBWorker for all requests.
+If the user passes the parameters explicitly, a new instance of the DBWorker is created upon each new request.</p>
+<p>Currently supported: MySQL und MS SQL.</p>
+  </div>
+  
+
+  
+
+  <h2>Parameters</h2>
+
+    <table class="table table-responsive table-bordered table-striped param_multicolumn">
+        <tr>
+        <th>Name</th>
+        <th>Pass type</th>
+        <th>Value type</th>
+        <th>Default value</th>
+        <th>Description</th>
+        </tr>
+        
+        
+        <tr>
+            <td>
+                $shard_name
+            </td>
+            <td>
+                by value
+            </td>
+            <td>
+                string
+            </td>
+            <td>
+                
+            </td>
+            <td class="description_column">
+                <p>The name of the shard.</p>
+            </td>
+        </tr>
+        
+        
+    </table>
+
+  
+  <h2>Returns</h2>
+  <div class="item_list">
+  <a href='class-SmartFactory.DatabaseWorkers.DBWorker.html'>\SmartFactory\DatabaseWorkers\DBWorker</a>|null<br>
+  
+  <div class="item_description"><p>returns DBWorker object or null if the object could not be created.</p></div>
+  
+  </div>
+  
+
+  <h2>Throws</h2>
+  <div class="item_list">
+  
+  \Exception<br>
+  
+  <div class="item_description"><p>It might throw an exception in the case of any errors:</p>
+<ul>
+<li>if the interface or class does not exist.</li>
+<li>if the shard was not found.</li>
+<li>if the check of the classes and interfaces fails.</li>
+<li>if the php extension is not installed.</li>
+<li>db_missing_type_error - if the database type is not specified.</li>
+<li>db_conn_data_error - if the connection parameters are incomplete.</li>
+<li>db_server_conn_error - if the database server cannot be connected.</li>
+<li>db_not_exists_error - if database does not exists od inaccesible to the user.</li>
+</ul></div>
+  
+  
+  </div>
+
+  
+  <h2>Overrides</h2>
+  <div class="item_list">
+  <a href='interface-SmartFactory.Interfaces.IShardManager.html#dbshard'>\SmartFactory\Interfaces\IShardManager::dbshard()</a>
+  </div>
+  
+
+  <h2>Authors</h2>
+  <div class="item_list">
+  
+  <div class='item'>Oleg Schildt</div>
+  
+  </div>
+
+  
+
+  
+
+  
+  <h2>Source code</h2>
+  <div class="item_list">
+  <a href='source-SmartFactory.DatabaseWorkers.ShardManager.php.html#124'>SmartFactory/DatabaseWorkers/ShardManager.php</a>
+  </div>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  <hr id="randomDBShard">
+  
+  <h1>Method: ShardManager::randomDBShard()</h1>
+
+  <div class="definition"><span class="php-keyword1">public</span> <span class="php-keyword1">function</span> randomDBShard(string <span class="php-var">$load_balancing_group</span>) : \SmartFactory\DatabaseWorkers\DBWorker|<span class="php-keyword1">null</span>;</div>
+
+  
+  <div class="short-description">
+  <p>The method provides the DBWorker object for working with the shard, that is chosen randomly
+for load balancing reason.</p>
+  </div>
+  
+
+  
+
+  
+
+  <h2>Parameters</h2>
+
+    <table class="table table-responsive table-bordered table-striped param_multicolumn">
+        <tr>
+        <th>Name</th>
+        <th>Pass type</th>
+        <th>Value type</th>
+        <th>Default value</th>
+        <th>Description</th>
+        </tr>
+        
+        
+        <tr>
+            <td>
+                $load_balancing_group
+            </td>
+            <td>
+                by value
+            </td>
+            <td>
+                string
+            </td>
+            <td>
+                
+            </td>
+            <td class="description_column">
+                <p>The name of the load balancing group, from which the shard should be randomly picked.</p>
+            </td>
+        </tr>
+        
+        
+    </table>
+
+  
+  <h2>Returns</h2>
+  <div class="item_list">
+  <a href='class-SmartFactory.DatabaseWorkers.DBWorker.html'>\SmartFactory\DatabaseWorkers\DBWorker</a>|null<br>
+  
+  <div class="item_description"><p>returns DBWorker object or null if the object could not be created.</p></div>
+  
+  </div>
+  
+
+  <h2>Throws</h2>
+  <div class="item_list">
+  
+  \Exception<br>
+  
+  <div class="item_description"><p>It might throw an exception in the case of any errors:</p>
+<ul>
+<li>if the load balancing group was not found.</li>
+<li>db_server_conn_error - if the database server cannot be connected.</li>
+<li>db_not_exists_error - if database does not exists od inaccesible to the user.</li>
+</ul></div>
+  
+  
+  </div>
+
+  
+  <h2>Overrides</h2>
+  <div class="item_list">
+  <a href='interface-SmartFactory.Interfaces.IShardManager.html#randomDBShard'>\SmartFactory\Interfaces\IShardManager::randomDBShard()</a>
+  </div>
+  
+
+  <h2>Authors</h2>
+  <div class="item_list">
+  
+  <div class='item'>Oleg Schildt</div>
+  
+  </div>
+
+  
+
+  
+
+  
+  <h2>Source code</h2>
+  <div class="item_list">
+  <a href='source-SmartFactory.DatabaseWorkers.ShardManager.php.html#170'>SmartFactory/DatabaseWorkers/ShardManager.php</a>
+  </div>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  <hr id="registerShard">
+  
+  <h1>Method: ShardManager::registerShard()</h1>
+
+  <div class="definition"><span class="php-keyword1">public</span> <span class="php-keyword1">function</span> registerShard(string <span class="php-var">$shard_name</span>, <span class="php-keyword1">array</span> <span class="php-var">$parameters</span>, string <span class="php-var">$load_balancing_group</span> = <span class="php-quote">&quot;&quot;</span>) : bool;</div>
+
+  
+  <div class="short-description">
+  <p>Registers a new shard.</p>
+  </div>
+  
+
+  
+
+  
+
+  <h2>Parameters</h2>
+
+    <table class="table table-responsive table-bordered table-striped param_multicolumn">
+        <tr>
+        <th>Name</th>
+        <th>Pass type</th>
+        <th>Value type</th>
+        <th>Default value</th>
+        <th>Description</th>
+        </tr>
+        
+        
+        <tr>
+            <td>
+                $shard_name
+            </td>
+            <td>
+                by value
+            </td>
+            <td>
+                string
+            </td>
+            <td>
+                
+            </td>
+            <td class="description_column">
+                <p>Unique shard name.</p>
+            </td>
+        </tr>
+        
+        <tr>
+            <td>
+                $parameters
+            </td>
+            <td>
+                by value
+            </td>
+            <td>
+                array
+            </td>
+            <td>
+                
+            </td>
+            <td class="description_column">
+                <p>The connection parameters to the shard as an associative array in the form key =&gt; value:</p>
+<ul>
+<li>$parameters[&quot;db_type&quot;] - type of the database (MySQL or MSSQL)</li>
+<li>$parameters[&quot;db_server&quot;] - server address</li>
+<li>$parameters[&quot;db_name&quot;] - database name</li>
+<li>$parameters[&quot;db_user&quot;] - user name</li>
+<li>$parameters[&quot;db_password&quot;] - user password</li>
+<li>$parameters[&quot;autoconnect&quot;] - should true if the connection should be established automatically upon creation.</li>
+<li>$parameters[&quot;read_only&quot;] - this paramter sets the connection to the read only mode.</li>
+</ul>
+            </td>
+        </tr>
+        
+        <tr>
+            <td>
+                $load_balancing_group
+            </td>
+            <td>
+                by value
+            </td>
+            <td>
+                string
+            </td>
+            <td>
+                &quot;&quot;
+            </td>
+            <td class="description_column">
+                <p>The name of the load balancing group, if the shard should be part of it, <a href='class-SmartFactory.DatabaseWorkers.ShardManager.html#randomDBShard'>\SmartFactory\DatabaseWorkers\ShardManager::randomDBShard()</a>.</p>
+            </td>
+        </tr>
+        
+        
+    </table>
+
+  
+  <h2>Returns</h2>
+  <div class="item_list">
+  bool<br>
+  
+  <div class="item_description"><p>It should return true if the registering was successful, otherwise false.</p></div>
+  
+  </div>
+  
+
+  <h2>Throws</h2>
+  <div class="item_list">
+  
+  \Exception<br>
+  
+  <div class="item_description"><p>It might throw an exception in the case of any errors:</p>
+<ul>
+<li>if the shard name is not specified.</li>
+<li>if the shard name has been already registered.</li>
+</ul></div>
+  
+  
+  </div>
+
+  
+  <h2>Overrides</h2>
+  <div class="item_list">
+  <a href='interface-SmartFactory.Interfaces.IShardManager.html#registerShard'>\SmartFactory\Interfaces\IShardManager::registerShard()</a>
+  </div>
+  
+
+  <h2>Authors</h2>
+  <div class="item_list">
+  
+  <div class='item'>Oleg Schildt</div>
+  
+  </div>
+
+  
+
+  
+
+  
+  <h2>Source code</h2>
+  <div class="item_list">
+  <a href='source-SmartFactory.DatabaseWorkers.ShardManager.php.html#76'>SmartFactory/DatabaseWorkers/ShardManager.php</a>
+  </div>
+                    
+                    <div id="footer">
+                        Generated on 2022-05-29 12:26 with <a href="https://github.com/oschildt/PhpDoxy" target="_blank">PhpDoxy</a>
+                    </div>                    
+                </div>
+            </div>
+        </div>
+
+        <script src="resources/jquery-3.2.1.min.js"></script>
+        <script src="resources/jquery-ui-1.12.1.min.js"></script>
+
+        <script src="elementlist.js"></script>
+        <script src="resources/main.js"></script>
+        
+        <script src="resources/jquery.iviewer.js" type="text/javascript"></script>
+        <script src="resources/jquery.mousewheel.js" type="text/javascript"></script>
+        
+    </body>
+</html>
+
+
