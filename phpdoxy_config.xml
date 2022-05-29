@@ -7,8 +7,7 @@
     <template>default</template>
 
     <user_files>
-        <user_file title="Directory structure - SmartFactory Library"
-                   menu_title="Structure">
+        <user_file title="Directory structure - SmartFactory Library" menu_title="Structure">
             add_doc\structure.html
         </user_file>
     </user_files>
