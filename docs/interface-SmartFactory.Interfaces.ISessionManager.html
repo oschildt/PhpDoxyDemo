@@ -374,7 +374,8 @@
   <div class="item_list">
   bool<br>
   
-  <div class="item_description"><p>Returns true if the session data has been successfully cleared, otherwise false.</p></div>
+  <div class="item_description"><p>Returns true if the session data has been successfully cleared, otherwise false.
+Returns true if the session data has been successfully cleared, otherwise false.</p></div>
   
   </div>
   
@@ -438,7 +439,8 @@
   <div class="item_list">
   bool<br>
   
-  <div class="item_description"><p>Returns true if the session has been successfully destroyed, otherwise false.</p></div>
+  <div class="item_description"><p>Returns true if the session has been successfully destroyed, otherwise false.
+Returns true if the session has been successfully destroyed, otherwise false.</p></div>
   
   </div>
   
@@ -511,7 +513,8 @@ that the session data of these instances does not mix.</p>
   <div class="item_list">
   string<br>
   
-  <div class="item_description"><p>Returns the current session context.</p></div>
+  <div class="item_description"><p>Returns the current session context.
+Returns the current session context.</p></div>
   
   </div>
   
@@ -581,7 +584,8 @@ that the session data of these instances does not mix.</p>
   <div class="item_list">
   string<br>
   
-  <div class="item_description"><p>Returns the ID of the current session.</p></div>
+  <div class="item_description"><p>Returns the ID of the current session.
+Returns the ID of the current session.</p></div>
   
   </div>
   
@@ -651,7 +655,8 @@ that the session data of these instances does not mix.</p>
   <div class="item_list">
   string<br>
   
-  <div class="item_description"><p>Returns the current session variable name.</p></div>
+  <div class="item_description"><p>Returns the current session variable name.
+Returns the current session variable name.</p></div>
   
   </div>
   
@@ -740,7 +745,8 @@ that the session data of these instances does not mix.</p>
                 
             </td>
             <td class="description_column">
-                <p>The new ID of the current session.</p>
+                <p>The new ID of the current session.
+The new ID of the current session.</p>
             </td>
         </tr>
         
@@ -752,7 +758,8 @@ that the session data of these instances does not mix.</p>
   <div class="item_list">
   bool<br>
   
-  <div class="item_description"><p>Returns true if the session ID has been successfully set, otherwise false.</p></div>
+  <div class="item_description"><p>Returns true if the session ID has been successfully set, otherwise false.
+Returns true if the session ID has been successfully set, otherwise false.</p></div>
   
   </div>
   
@@ -841,7 +848,8 @@ that the session data of these instances does not mix.</p>
                 
             </td>
             <td class="description_column">
-                <p>The new session variable name.</p>
+                <p>The new session variable name.
+The new session variable name.</p>
             </td>
         </tr>
         
@@ -853,7 +861,8 @@ that the session data of these instances does not mix.</p>
   <div class="item_list">
   bool<br>
   
-  <div class="item_description"><p>Returns true if the session variable name has been successfully set, otherwise false.</p></div>
+  <div class="item_description"><p>Returns true if the session variable name has been successfully set, otherwise false.
+Returns true if the session variable name has been successfully set, otherwise false.</p></div>
   
   </div>
   
@@ -947,6 +956,7 @@ in the readonly mode or not.</p>
 <p>The parameter $readonly starts the session in non-blocking
 readonly mode. It can be used in the asynchronous ajax requests
 So that they are not blocked by the main process and by each
+ohter while the write lock is held on the session file.
 ohter while the write lock is held on the session file.</p>
             </td>
         </tr>
@@ -970,6 +980,7 @@ ohter while the write lock is held on the session file.</p>
 subfolders, and all subfolders are within the same session,
 and the provider does not let you to change the session path,
 then you can use different $context in each instance to ensure
+that the session data of these instances does not mix.
 that the session data of these instances does not mix.</p>
             </td>
         </tr>
@@ -982,7 +993,8 @@ that the session data of these instances does not mix.</p>
   <div class="item_list">
   bool<br>
   
-  <div class="item_description"><p>Returns true if the session has been successfully started, otherwise false.</p></div>
+  <div class="item_description"><p>Returns true if the session has been successfully started, otherwise false.
+Returns true if the session has been successfully started, otherwise false.</p></div>
   
   </div>
   
@@ -1074,7 +1086,8 @@ that the session data of these instances does not mix.</p>
                 
             </td>
             <td class="description_column">
-                <p>The session context.</p>
+                <p>The session context.
+The session context.</p>
             </td>
         </tr>
         
@@ -1166,7 +1179,8 @@ only one dimensional arrays, thus, it is not applicable for us.</p>
 <p>We return the reference to the internal data. It allows setting
 multidimesional arrays as follows:</p>
 <pre><code class="language-php"><span class="php-var">$smanager</span>-&gt;vars()[<span class="php-quote">&quot;user&quot;</span>][<span class="php-quote">&quot;name&quot;</span>] = <span class="php-quote">&quot;Alex&quot;</span>;
-<span class="php-var">$smanager</span>-&gt;vars()[<span class="php-quote">&quot;user&quot;</span>][<span class="php-quote">&quot;age&quot;</span>] = <span class="php-quote">&quot;22&quot;</span>;</code></pre></div>
+<span class="php-var">$smanager</span>-&gt;vars()[<span class="php-quote">&quot;user&quot;</span>][<span class="php-quote">&quot;age&quot;</span>] = <span class="php-quote">&quot;22&quot;</span>;</code></pre>
+<pre><code></code></pre></div>
   
   </div>
   
@@ -1230,7 +1244,8 @@ multidimesional arrays as follows:</p>
   <div class="item_list">
   bool<br>
   
-  <div class="item_description"><p>Returns true if the session has been successfully closed, otherwise false.</p></div>
+  <div class="item_description"><p>Returns true if the session has been successfully closed, otherwise false.
+Returns true if the session has been successfully closed, otherwise false.</p></div>
   
   </div>
   
@@ -1257,7 +1272,7 @@ multidimesional arrays as follows:</p>
   </div>
                     
                     <div id="footer">
-                        Generated on 2024-01-09 08:29 with <a href="https://github.com/oschildt/PhpDoxy" target="_blank">PhpDoxy</a>
+                        Generated on 2024-11-19 13:27 with <a href="https://github.com/oschildt/PhpDoxy" target="_blank">PhpDoxy</a>
                     </div>                    
                 </div>
             </div>

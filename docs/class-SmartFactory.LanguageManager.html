@@ -965,6 +965,7 @@ you want it to be open in the corresponding language, but
 the administration console should remain in English.</p>
 <p>With the help of $context, you are able to maintain different
 languages for different parts of your application.
+If you do not need the $context, just do not specify it.
 If you do not need the $context, just do not specify it.</p>
             </td>
         </tr>
@@ -1058,7 +1059,8 @@ If you do not need the $context, just do not specify it.</p>
   <div class="item_list">
   bool<br>
   
-  <div class="item_description"><p>Returns the current context.</p></div>
+  <div class="item_description"><p>Returns the current context.
+Returns the current context.</p></div>
   
   </div>
   
@@ -1146,7 +1148,8 @@ If you do not need the $context, just do not specify it.</p>
                 
             </td>
             <td class="description_column">
-                <p>The name of the country in any supported language.</p>
+                <p>The name of the country in any supported language.
+The name of the country in any supported language.</p>
             </td>
         </tr>
         
@@ -1158,7 +1161,8 @@ If you do not need the $context, just do not specify it.</p>
   <div class="item_list">
   string<br>
   
-  <div class="item_description"><p>Returns the country code if it could be found, otherwise an empty string.</p></div>
+  <div class="item_description"><p>Returns the country code if it could be found, otherwise an empty string.
+Returns the country code if it could be found, otherwise an empty string.</p></div>
   
   </div>
   
@@ -1261,7 +1265,8 @@ If you do not need the $context, just do not specify it.</p>
                 
             </td>
             <td class="description_column">
-                <p>Target array where the country list should be loaded.</p>
+                <p>Target array where the country list should be loaded.
+Target array where the country list should be loaded.</p>
             </td>
         </tr>
         
@@ -1280,6 +1285,7 @@ If you do not need the $context, just do not specify it.</p>
             </td>
             <td class="description_column">
                 <p>The langauge. If it is not specified,
+the default langauge is used.
 the default langauge is used.</p>
             </td>
         </tr>
@@ -1298,7 +1304,8 @@ the default langauge is used.</p>
                 []
             </td>
             <td class="description_column">
-                <p>List of the country codes to be displayed first in the order, they appear in the list.</p>
+                <p>List of the country codes to be displayed first in the order, they appear in the list.
+List of the country codes to be displayed first in the order, they appear in the list.</p>
             </td>
         </tr>
         
@@ -1310,7 +1317,8 @@ the default langauge is used.</p>
   <div class="item_list">
   bool<br>
   
-  <div class="item_description"><p>Returns true if the country list is successfully retrieved, otherwise false.</p></div>
+  <div class="item_description"><p>Returns true if the country list is successfully retrieved, otherwise false.
+Returns true if the country list is successfully retrieved, otherwise false.</p></div>
   
   </div>
   
@@ -1414,7 +1422,8 @@ for the given langauge.</p>
                 
             </td>
             <td class="description_column">
-                <p>Country ISO code (uppercase, e.g. US, DE, FR).</p>
+                <p>Country ISO code (uppercase, e.g. US, DE, FR).
+Country ISO code (uppercase, e.g. US, DE, FR).</p>
             </td>
         </tr>
         
@@ -1433,6 +1442,7 @@ for the given langauge.</p>
             </td>
             <td class="description_column">
                 <p>The langauge. If it is not specified,
+the default langauge is used.
 the default langauge is used.</p>
             </td>
         </tr>
@@ -1453,6 +1463,7 @@ the default langauge is used.</p>
             <td class="description_column">
                 <p>If it is set to true,
 the E_USER_NOTICE is triggered in the case of mussing
+translations.
 translations.</p>
             </td>
         </tr>
@@ -1466,6 +1477,7 @@ translations.</p>
   string<br>
   
   <div class="item_description"><p>Returns the translation text for the country name or the $code if no translation
+is found.
 is found.</p></div>
   
   </div>
@@ -1550,7 +1562,8 @@ is found.</p></div>
   <div class="item_list">
   string<br>
   
-  <div class="item_description"><p>Returns the current language ISO code.</p></div>
+  <div class="item_description"><p>Returns the current language ISO code.
+Returns the current language ISO code.</p></div>
   
   </div>
   
@@ -1644,7 +1657,8 @@ is found.</p></div>
                 
             </td>
             <td class="description_column">
-                <p>The name of the language in any supported language.</p>
+                <p>The name of the language in any supported language.
+The name of the language in any supported language.</p>
             </td>
         </tr>
         
@@ -1656,7 +1670,8 @@ is found.</p></div>
   <div class="item_list">
   string<br>
   
-  <div class="item_description"><p>Returns the language code if it could be found, otherwise an empty string.</p></div>
+  <div class="item_description"><p>Returns the language code if it could be found, otherwise an empty string.
+Returns the language code if it could be found, otherwise an empty string.</p></div>
   
   </div>
   
@@ -1759,7 +1774,8 @@ is found.</p></div>
                 
             </td>
             <td class="description_column">
-                <p>Target array where the language list should be loaded.</p>
+                <p>Target array where the language list should be loaded.
+Target array where the language list should be loaded.</p>
             </td>
         </tr>
         
@@ -1778,6 +1794,7 @@ is found.</p></div>
             </td>
             <td class="description_column">
                 <p>The langauge. If it is not specified,
+the default langauge is used.
 the default langauge is used.</p>
             </td>
         </tr>
@@ -1796,7 +1813,8 @@ the default langauge is used.</p>
                 []
             </td>
             <td class="description_column">
-                <p>List of the language codes to be displayed first in the order, they appear in the list.</p>
+                <p>List of the language codes to be displayed first in the order, they appear in the list.
+List of the language codes to be displayed first in the order, they appear in the list.</p>
             </td>
         </tr>
         
@@ -1808,7 +1826,8 @@ the default langauge is used.</p>
   <div class="item_list">
   bool<br>
   
-  <div class="item_description"><p>Returns true if the langauge list is successfully retrieved, otherwise false.</p></div>
+  <div class="item_description"><p>Returns true if the langauge list is successfully retrieved, otherwise false.
+Returns true if the langauge list is successfully retrieved, otherwise false.</p></div>
   
   </div>
   
@@ -1912,7 +1931,8 @@ for the given langauge.</p>
                 
             </td>
             <td class="description_column">
-                <p>Language ISO code (lowercase, e.g. en, de, fr).</p>
+                <p>Language ISO code (lowercase, e.g. en, de, fr).
+Language ISO code (lowercase, e.g. en, de, fr).</p>
             </td>
         </tr>
         
@@ -1931,6 +1951,7 @@ for the given langauge.</p>
             </td>
             <td class="description_column">
                 <p>The langauge. If it is not specified,
+the default langauge is used.
 the default langauge is used.</p>
             </td>
         </tr>
@@ -1951,6 +1972,7 @@ the default langauge is used.</p>
             <td class="description_column">
                 <p>If it is set to true,
 the E_USER_NOTICE is triggered in the case of mussing
+translations.
 translations.</p>
             </td>
         </tr>
@@ -1964,6 +1986,7 @@ translations.</p>
   string<br>
   
   <div class="item_description"><p>Returns the translation text for the language name or the $code if no translation
+is found.
 is found.</p></div>
   
   </div>
@@ -2048,7 +2071,8 @@ is found.</p></div>
   <div class="item_list">
   array<br>
   
-  <div class="item_description"><p>Returns the list of supported languages.</p></div>
+  <div class="item_description"><p>Returns the list of supported languages.
+Returns the list of supported languages.</p></div>
   
   </div>
   
@@ -2136,7 +2160,8 @@ is found.</p></div>
                 
             </td>
             <td class="description_column">
-                <p>Text ID</p>
+                <p>Text ID
+Text ID</p>
             </td>
         </tr>
         
@@ -2155,6 +2180,7 @@ is found.</p></div>
             </td>
             <td class="description_column">
                 <p>The langauge. If it is not specified,
+the default langauge is used.
 the default langauge is used.</p>
             </td>
         </tr>
@@ -2167,7 +2193,8 @@ the default langauge is used.</p>
   <div class="item_list">
   bool<br>
   
-  <div class="item_description"><p>Returns true if the translation exists, otherwise false.</p></div>
+  <div class="item_description"><p>Returns true if the translation exists, otherwise false.
+Returns true if the translation exists, otherwise false.</p></div>
   
   </div>
   
@@ -2263,6 +2290,9 @@ the default langauge is used.</p>
 <li>
 <p>$parameters[&quot;use_apcu&quot;] - if installed, apcu can be used to cache the translations in the memory.</p>
 </li>
+<li>
+<p>$parameters[&quot;use_apcu&quot;] - if installed, apcu can be used to cache the translations in the memory.</p>
+</li>
 </ul>
             </td>
         </tr>
@@ -2275,7 +2305,8 @@ the default langauge is used.</p>
   <div class="item_list">
   bool<br>
   
-  <div class="item_description"><p>Returns true upon successful initialization, otherwise false.</p></div>
+  <div class="item_description"><p>Returns true upon successful initialization, otherwise false.
+Returns true upon successful initialization, otherwise false.</p></div>
   
   </div>
   
@@ -2344,7 +2375,8 @@ the default langauge is used.</p>
   <div class="item_list">
   bool<br>
   
-  <div class="item_description"><p>It should return true if the dictoinary has been successfully loaded, otherwise false.</p></div>
+  <div class="item_description"><p>It should return true if the dictoinary has been successfully loaded, otherwise false.
+It should return true if the dictoinary has been successfully loaded, otherwise false.</p></div>
   
   </div>
   
@@ -2453,7 +2485,8 @@ the default langauge is used.</p>
                 
             </td>
             <td class="description_column">
-                <p>The language ISO code to be set.</p>
+                <p>The language ISO code to be set.
+The language ISO code to be set.</p>
             </td>
         </tr>
         
@@ -2465,7 +2498,8 @@ the default langauge is used.</p>
   <div class="item_list">
   bool<br>
   
-  <div class="item_description"><p>Returns true if the current language has been successfully set, otherwise false.</p></div>
+  <div class="item_description"><p>Returns true if the current language has been successfully set, otherwise false.
+Returns true if the current language has been successfully set, otherwise false.</p></div>
   
   </div>
   
@@ -2559,7 +2593,8 @@ the default langauge is used.</p>
                 
             </td>
             <td class="description_column">
-                <p>Text ID</p>
+                <p>Text ID
+Text ID</p>
             </td>
         </tr>
         
@@ -2578,6 +2613,7 @@ the default langauge is used.</p>
             </td>
             <td class="description_column">
                 <p>The langauge. If it is not specified,
+the default langauge is used.
 the default langauge is used.</p>
             </td>
         </tr>
@@ -2598,6 +2634,7 @@ the default langauge is used.</p>
             <td class="description_column">
                 <p>If it is set to true,
 the E_USER_NOTICE is triggered in the case of missing
+translations.
 translations.</p>
             </td>
         </tr>
@@ -2616,7 +2653,8 @@ translations.</p>
                 &quot;&quot;
             </td>
             <td class="description_column">
-                <p>The default text to be used if there is no translation.</p>
+                <p>The default text to be used if there is no translation.
+The default text to be used if there is no translation.</p>
             </td>
         </tr>
         
@@ -2629,6 +2667,7 @@ translations.</p>
   string<br>
   
   <div class="item_description"><p>Returns the translation text or the $default_text/$text_id if no translation
+is found.
 is found.</p></div>
   
   </div>
@@ -2717,7 +2756,8 @@ is found.</p></div>
                 
             </td>
             <td class="description_column">
-                <p>Country ISO code (uppercase, e.g. US, DE, FR).</p>
+                <p>Country ISO code (uppercase, e.g. US, DE, FR).
+Country ISO code (uppercase, e.g. US, DE, FR).</p>
             </td>
         </tr>
         
@@ -2736,6 +2776,7 @@ is found.</p></div>
             </td>
             <td class="description_column">
                 <p>The langauge. If it is not specified,
+the default langauge is used.
 the default langauge is used.</p>
             </td>
         </tr>
@@ -2748,7 +2789,8 @@ the default langauge is used.</p>
   <div class="item_list">
   bool<br>
   
-  <div class="item_description"><p>Returns true if the country code is valid (has translation), otherwise false.</p></div>
+  <div class="item_description"><p>Returns true if the country code is valid (has translation), otherwise false.
+Returns true if the country code is valid (has translation), otherwise false.</p></div>
   
   </div>
   
@@ -2851,7 +2893,8 @@ the default langauge is used.</p>
                 
             </td>
             <td class="description_column">
-                <p>Language ISO code (lowercase, e.g. en, de, fr).</p>
+                <p>Language ISO code (lowercase, e.g. en, de, fr).
+Language ISO code (lowercase, e.g. en, de, fr).</p>
             </td>
         </tr>
         
@@ -2870,6 +2913,7 @@ the default langauge is used.</p>
             </td>
             <td class="description_column">
                 <p>The langauge. If it is not specified,
+the default langauge is used.
 the default langauge is used.</p>
             </td>
         </tr>
@@ -2882,7 +2926,8 @@ the default langauge is used.</p>
   <div class="item_list">
   bool<br>
   
-  <div class="item_description"><p>Returns true if the langauge code is valid (has translation), otherwise false.</p></div>
+  <div class="item_description"><p>Returns true if the langauge code is valid (has translation), otherwise false.
+Returns true if the langauge code is valid (has translation), otherwise false.</p></div>
   
   </div>
   
@@ -2932,7 +2977,7 @@ the default langauge is used.</p>
   </div>
                     
                     <div id="footer">
-                        Generated on 2024-01-09 08:29 with <a href="https://github.com/oschildt/PhpDoxy" target="_blank">PhpDoxy</a>
+                        Generated on 2024-11-19 13:27 with <a href="https://github.com/oschildt/PhpDoxy" target="_blank">PhpDoxy</a>
                     </div>                    
                 </div>
             </div>
