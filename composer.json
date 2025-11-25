@@ -1,7 +1,7 @@
 {
   "require": {
     "php": ">=8.4",
-    "smartfactory/phpdoxy": ">=1.0.7"
+    "smartfactory/phpdoxy": ">=1.0.8"
   },
 
   "minimum-stability": "dev",
