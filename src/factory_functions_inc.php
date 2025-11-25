@@ -9,7 +9,7 @@
 
 namespace SmartFactory;
 
-use SmartFactory\DatabaseWorkers\DBWorker;
+use \SmartFactory\DatabaseWorkers\DBWorker;
 
 /**
  * The method singleton creates an object that supports the specified interface and ensures
@@ -21,6 +21,10 @@ use SmartFactory\DatabaseWorkers\DBWorker;
  *
  * @param string|object $interface_or_class
  * Name of the class/interface as string or the class/interface.
+ *
+ * @param string $context
+ * The context of binding. You can introduce a different context, and bind another implementation.
+ * Then, you can request another instance specifying the context explicitly.
  *
  * @return object
  * Returns object of the class bound to the interfase.
@@ -36,9 +40,9 @@ use SmartFactory\DatabaseWorkers\DBWorker;
  *
  * @author Oleg Schildt
  */
-function singleton($interface_or_class)
+function singleton(string|object $interface_or_class, string $context = "default"): object
 {
-    return ObjectFactory::getInstance($interface_or_class, true);
+    return ObjectFactory::getInstance($interface_or_class, true, $context);
 } // singleton
 
 /**
@@ -49,6 +53,10 @@ function singleton($interface_or_class)
  *
  * @param string|object $interface_or_class
  * Name of the class/interface as string or the class/interface.
+ *
+ * @param string $context
+ * The context of binding. You can introduce a different context, and bind another implementation.
+ * Then, you can request another instance specifying the context explicitly.
  *
  * @return object
  * Returns object of the class bound to the interface.
@@ -64,9 +72,9 @@ function singleton($interface_or_class)
  *
  * @author Oleg Schildt
  */
-function instance($interface_or_class)
+function instance(string|object $interface_or_class, string  $context = "default"): object
 {
-    return ObjectFactory::getInstance($interface_or_class, false);
+    return ObjectFactory::getInstance($interface_or_class, false, $context);
 } // instance
 
 /**
@@ -103,44 +111,36 @@ function instance($interface_or_class)
  *                 ]);
  * ```
  *
- * @param boolean $singleton
+ * @param bool $singleton
  * If the parameter is true, it ensures that only one instance of this object exists.
  *
- * @return DatabaseWorkers\DBWorker|null
+ * @return ?DatabaseWorkers\DBWorker
  * returns DBWorker object or null if the object could not be created.
  *
  * @throws \Exception
- * It might throw the following exceptions in the case of any errors:
- *
- * - if the interface or class does not exist.
- * - if the check of the classes and interfaces fails.
- * - if the php extension is not installed.
- * - db_missing_type_error - if the database type is not specified.
- * - db_conn_data_error - if the connection parameters are incomplete.
- * - db_server_conn_error - if the database server cannot be connected.
- * - db_not_exists_error - if database does not exists od inaccesible to the user.
+ * It might throw the following exceptions in the case of any errors.
  *
  * @author Oleg Schildt
  */
-function dbworker($parameters = null, $singleton = true)
+function dbworker(array $parameters = [], bool $singleton = true) : ?DatabaseWorkers\DBWorker
 {
     if (empty($parameters["db_type"])) {
         throw new \Exception("Database type is not specified!");
     }
-    
+
     $class_name = "SmartFactory\\DatabaseWorkers\\" . $parameters["db_type"] . "_DBWorker";
-    
+
     $dbworker = ObjectFactory::getInstance($class_name, $singleton);
-    
+
     if (!$dbworker->is_extension_installed()) {
         throw new \Exception(sprintf("PHP extension '%s' is not installed or is too old. Work with the database '%s' is not possible!", $dbworker->get_extension_name(), $dbworker->get_rdbms_name()));
     }
-    
+
     // instance already connected
     if ($dbworker->is_connected()) {
         return $dbworker;
     }
-    
+
     $dbworker->init($parameters);
 
     // do not connect, only object required
@@ -148,9 +148,9 @@ function dbworker($parameters = null, $singleton = true)
     if (empty($parameters["autoconnect"])) {
         return $dbworker;
     }
-    
+
     $dbworker->connect();
-    
+
     return $dbworker;
 } // dbworker
 

@@ -11,7 +11,8 @@
 
 namespace SmartFactory;
 
-use SmartFactory\Interfaces\ISettingsManager;
+use \SmartFactory\Interfaces\ISettingsManager;
+use SmartFactory\Interfaces\ISettingsValidator;
 
 /**
  * Class for management of the config settings stored in a config JSON file.
@@ -34,21 +35,21 @@ class ConfigSettingsManager implements ISettingsManager
     /**
      * Internal variable that holds the target file path for storing the settings data.
      *
-     * @var string
+     * @var ?string
      *
      * @author Oleg Schildt
      */
-    protected $save_path = null;
+    protected ?string $save_path = null;
     
     /**
      * Internal variable for storing the state whether the data should be encrypted
      * before saving.
      *
-     * @var boolean
+     * @var bool
      *
      * @author Oleg Schildt
      */
-    protected $save_encrypted = false;
+    protected bool $save_encrypted = false;
     
     /**
      * Internal variable for storing the salt key if the data should be encrypted
@@ -58,25 +59,25 @@ class ConfigSettingsManager implements ISettingsManager
      *
      * @author Oleg Schildt
      */
-    protected $salt_key = "default";
+    protected string $salt_key = "default";
     
     /**
      * Internal variable for storing the state whether the config file must exist.
      *
-     * @var boolean
+     * @var bool
      *
      * @author Oleg Schildt
      */
-    protected $config_file_must_exist = false;
+    protected bool $config_file_must_exist = false;
     
     /**
      * Internal variable for storing the state whether the APCU should be used.
      *
-     * @var boolean
+     * @var bool
      *
      * @author Oleg Schildt
      */
-    protected $use_apcu = false;
+    protected bool $use_apcu = false;
     
     /**
      * Internal variable for storing the current context.
@@ -88,19 +89,19 @@ class ConfigSettingsManager implements ISettingsManager
      *
      * @author Oleg Schildt
      */
-    protected $context = "default";
+    protected string $context = "default";
     
     /**
      * Internal variable for storing the validator.
      *
-     * @var \SmartFactory\Interfaces\ISettingsValidator
+     * @var ?\SmartFactory\Interfaces\ISettingsValidator
      *
      * @see ConfigSettingsManager::getValidator()
      * @see ConfigSettingsManager::setValidator()
      *
      * @author Oleg Schildt
      */
-    protected $validator = null;
+    protected ?\SmartFactory\Interfaces\ISettingsValidator $validator = null;
     
     /**
      * Internal variable for storing the array of the settings values.
@@ -109,17 +110,16 @@ class ConfigSettingsManager implements ISettingsManager
      *
      * @author Oleg Schildt
      */
-    protected $settings = [];
+    protected array $settings = [];
     
     /**
      * This is internal auxiliary function for converting the settings to JSON and storing it
-     * to the target file defined by the iniailization.
+     * to the target file defined by the initialization.
      *
      * @param array &$data
      * The array with the settings values to be saved.
      *
-     * @return boolean
-     * Returns true if the data has been successfully saved, otherwise false.
+     * @return void
      *
      * @throws \Exception
      * It might throw an exception in the case of any errors:
@@ -131,7 +131,7 @@ class ConfigSettingsManager implements ISettingsManager
      *
      * @author Oleg Schildt
      */
-    protected function saveJSON(&$data)
+    protected function saveJSON(array &$data): void
     {
         $this->validateParameters();
         
@@ -141,26 +141,38 @@ class ConfigSettingsManager implements ISettingsManager
             $json = aes_256_encrypt($json, $this->salt_key);
         }
         
-        if (file_put_contents($this->save_path, $json) === false) {
-            throw new \Exception(sprintf("The config file '%s' cannot be written!", $this->save_path));
+        $semaphore_path = $this->save_path . ".lock";
+        
+        if (!is_writable(file_exists($this->save_path) ? $this->save_path : dirname($this->save_path))) {
+            throw new \Exception(sprintf("The config file '%s' ot its directory is not accesible for writing!", $this->save_path));
         }
+
+        $fp = fopen($semaphore_path, "w");
+        if (flock($fp, LOCK_EX)) {
+            if (file_put_contents($this->save_path, $json) === false) {
+                flock($fp, LOCK_UN); 
+                fclose($fp);
+
+                throw new \Exception(sprintf("Writing of the config file '%s' failed!", $this->save_path));
+            }
+            flock($fp, LOCK_UN); 
+        }        
+
+        fclose($fp);
         
         if ($this->use_apcu) {
             apcu_delete("config_settings");
         }
-        
-        return true;
     } // saveJSON
     
     /**
      * This is internal auxiliary function for loading the settings from the target file
-     * defined by the iniailization.
+     * defined by the initialization.
      *
      * @param array &$data
      * The target array with the settings values to be loaded.
      *
-     * @return boolean
-     * Returns true if the data has been successfully loaded, otherwise false.
+     * @return void
      *
      * @throws \Exception
      * It might throw an exception in the case of any errors:
@@ -174,28 +186,42 @@ class ConfigSettingsManager implements ISettingsManager
      *
      * @author Oleg Schildt
      */
-    protected function loadJSON(&$data)
+    protected function loadJSON(array &$data): void
     {
         if ($this->use_apcu && apcu_exists("config_settings")) {
             $data = apcu_fetch("config_settings");
             if (!empty($data)) {
-                return true;
+                return;
             }
         }
         
         $this->validateParameters();
         
         if (!file_exists($this->save_path) && empty($this->config_file_must_exist)) {
-            return true;
+            return;
         }
         
         if (!file_exists($this->save_path) || !is_readable($this->save_path)) {
-            throw new \Exception(sprintf("The config file '%s' cannot be read!", $this->save_path));
+            throw new \Exception(sprintf("The config file '%s' is not accesible for reading or does not exist!", $this->save_path));
         }
         
-        $json = file_get_contents($this->save_path);
-        if ($json === false) {
-            throw new \Exception(sprintf("The config file '%s' cannot be read!", $this->save_path));
+        $json = null;
+        
+        $semaphore_path = $this->save_path . ".lock";
+
+        $fp = fopen($semaphore_path, "w");
+        if (flock($fp, LOCK_EX)) {
+            $json = file_get_contents($this->save_path);
+            flock($fp, LOCK_UN); 
+        }
+        fclose($fp);
+
+        if (file_exists($semaphore_path)) {
+            unlink($semaphore_path);
+        }
+        
+        if (empty($json)) {
+            throw new \Exception(sprintf("Reading of the config file '%s' failed!", $this->save_path));
         }
         
         if (!empty($this->save_encrypted)) {
@@ -211,16 +237,13 @@ class ConfigSettingsManager implements ISettingsManager
         if ($this->use_apcu) {
             apcu_store("config_settings", $data);
         }
-        
-        return true;
     } // loadJSON
     
     /**
      * This is internal auxiliary function for checking that the settings
-     * manager is intialized correctly.
+     * manager is initialized correctly.
      *
-     * @return boolean
-     * It should return true if the settings manager is intialized correctly, otherwise false.
+     * @return void
      *
      * @throws \Exception
      * It might throw an exception in the case of any errors:
@@ -229,13 +252,11 @@ class ConfigSettingsManager implements ISettingsManager
      *
      * @author Oleg Schildt
      */
-    protected function validateParameters()
+    protected function validateParameters(): void
     {
         if (empty($this->save_path)) {
             throw new \Exception("The 'save_path' is not specified!");
         }
-        
-        return true;
     } // validateParameters
     
     /**
@@ -247,21 +268,20 @@ class ConfigSettingsManager implements ISettingsManager
      * - $parameters["save_path"] - the target file path where the settings data should be stored.
      * - $parameters["save_encrypted"] - if it is true, the data is encrypted before saving.
      * - $parameters["salt_key"] - the salt key if the data should be encrypted before saving.
-     * - $parameters["config_file_must_exist"] - if this paremeter is true and the config file does not exist, the loading function will fail.
+     * - $parameters["config_file_must_exist"] - if this parameter is true and the config file does not exist, the loading function will fail.
      *
      * - $parameters["use_apcu"] - if installed, apcu can be used to cache the settings in the memory.
      *
-     * @return boolean
-     * Returns true upon successful initialization, otherwise false.
+     * @return void
      *
      * @throws \Exception
-     * It might throw an exception in the case of any errors:
+     * It might throw an exception in the case of any system errors:
      *
      * - if the save path is not specified.
      *
      * @author Oleg Schildt
      */
-    public function init($parameters)
+    public function init(array $parameters): void
     {
         if (!empty($parameters["save_path"])) {
             $this->save_path = $parameters["save_path"];
@@ -283,13 +303,13 @@ class ConfigSettingsManager implements ISettingsManager
             $this->use_apcu = $parameters["use_apcu"];
         }
         
-        return $this->validateParameters();
+        $this->validateParameters();
     } // init
     
     /**
      * Sets the validator for the settings.
      *
-     * @param Interfaces\ISettingsValidator $validator
+     * @param ISettingsValidator $validator
      * The settings validator.
      *
      * @return void
@@ -299,7 +319,7 @@ class ConfigSettingsManager implements ISettingsManager
      *
      * @author Oleg Schildt
      */
-    public function setValidator($validator)
+    public function setValidator(ISettingsValidator $validator): void
     {
         $this->validator = $validator;
     } // setValidator
@@ -307,7 +327,7 @@ class ConfigSettingsManager implements ISettingsManager
     /**
      * Returns the validator for the settings.
      *
-     * @return \SmartFactory\Interfaces\ISettingsValidator|null
+     * @return ?\SmartFactory\Interfaces\ISettingsValidator|null
      * Returns the validator for the settings or null if none is defined.
      *
      * @see ConfigSettingsManager::setValidator()
@@ -315,7 +335,7 @@ class ConfigSettingsManager implements ISettingsManager
      *
      * @author Oleg Schildt
      */
-    public function getValidator()
+    public function getValidator(): ?\SmartFactory\Interfaces\ISettingsValidator
     {
         return $this->validator;
     } // getValidator
@@ -341,7 +361,7 @@ class ConfigSettingsManager implements ISettingsManager
      *
      * @author Oleg Schildt
      */
-    public function setContext($context = "default")
+    public function setContext(string $context = "default"): void
     {
         $this->context = $context;
     } // setContext
@@ -365,7 +385,7 @@ class ConfigSettingsManager implements ISettingsManager
      *
      * @author Oleg Schildt
      */
-    public function getContext()
+    public function getContext(): string
     {
         return $this->context;
     } // getContext
@@ -394,7 +414,7 @@ class ConfigSettingsManager implements ISettingsManager
      *
      * @author Oleg Schildt
      */
-    public function setParameter($name, $value)
+    public function setParameter(string $name, mixed $value): void
     {
         if (empty($this->settings)) {
             $this->loadSettings();
@@ -406,10 +426,10 @@ class ConfigSettingsManager implements ISettingsManager
     /**
      * Sets settings parameters from an array.
      *
-     * @param array &$parameters
+     * @param array $parameters
      * Array of parameters in the form key => value.
      *
-     * @param boolean $force_creation
+     * @param bool $force_creation
      * Flag which defines whether the parameter should be created
      * if not exists. If false, only existing parameters are updated.
      *
@@ -428,7 +448,7 @@ class ConfigSettingsManager implements ISettingsManager
      *
      * @author Oleg Schildt
      */
-    public function setParameters(&$parameters, $force_creation = false)
+    public function setParameters(array $parameters, bool $force_creation = false): void
     {
         if (empty($this->settings)) {
             $this->loadSettings();
@@ -451,7 +471,7 @@ class ConfigSettingsManager implements ISettingsManager
      *
      * @param mixed $default
      * The default value of the settings parameter if it is not set yet.
-     * The parameter is a confortable way to pre-set a parameter
+     * The parameter is a conformable way to pre-set a parameter
      * to a default value if its value is not set yet.
      *
      * @return mixed
@@ -468,7 +488,7 @@ class ConfigSettingsManager implements ISettingsManager
      *
      * @author Oleg Schildt
      */
-    public function getParameter($name, $default = null)
+    public function getParameter(string $name, mixed $default = null): mixed
     {
         if (empty($this->settings)) {
             $this->loadSettings();
@@ -487,9 +507,10 @@ class ConfigSettingsManager implements ISettingsManager
      * It should be called after settings the new values of the parameters
      * and before their saving.
      *
-     * @return boolean
-     * Returns true if there is no validator defined, otherwise lets
-     * the validator validate the settings.
+     * @return void
+     *
+     * @throws \SmartFactory\SmartException|\SmartFactory\SmartExceptionCollection
+     * It might throw an exception if the content type oк JSON data is invalid.
      *
      * @uses Interfaces\ISettingsValidator
      *
@@ -498,19 +519,19 @@ class ConfigSettingsManager implements ISettingsManager
      *
      * @author Oleg Schildt
      */
-    public function validateSettings()
+    public function validateSettings(): void
     {
         if (empty($this->validator)) {
-            return true;
+            return;
         }
         
-        return $this->validator->validate($this, $this->context);
+        $this->validator->validate($this, $this->context);
     } // validateSettings
     
     /**
      * Loads the settings from the target file.
      *
-     * @return boolean
+     * @return void
      * Returns true if the settings have been successfully loaded, otherwise false.
      *
      * @throws \Exception
@@ -524,16 +545,15 @@ class ConfigSettingsManager implements ISettingsManager
      *
      * @author Oleg Schildt
      */
-    public function loadSettings()
+    public function loadSettings(): void
     {
-        return $this->loadJSON($this->settings);
+        $this->loadJSON($this->settings);
     } // loadSettings
     
     /**
      * Saves the settings from to the target file.
      *
-     * @return boolean
-     * Returns true if the settings have been successfully saved, otherwise false.
+     * @return void
      *
      * @throws \Exception
      * It might throw an exception in the case of any errors:
@@ -546,12 +566,12 @@ class ConfigSettingsManager implements ISettingsManager
      *
      * @author Oleg Schildt
      */
-    public function saveSettings()
+    public function saveSettings(): void
     {
         if (empty($this->settings)) {
             $this->loadSettings();
         }
         
-        return $this->saveJSON($this->settings);
+        $this->saveJSON($this->settings);
     } // saveSettings
 } // ConfigSettingsManager

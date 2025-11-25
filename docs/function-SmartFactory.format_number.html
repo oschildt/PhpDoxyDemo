@@ -55,8 +55,14 @@
                         </li>
                         
                         <li>
-                            <a href="log.html" class="">
-                                Log
+                            <a href="constants.html" class="">
+                                Constants
+                            </a>
+                        </li>
+                        
+                        <li>
+                            <a href="globals.html" class="">
+                                Globals
                             </a>
                         </li>
                         
@@ -119,12 +125,7 @@
                 <div class="col-md-12">
                     <h1>Function: format_number()</h1>
 
-<div class="definition"><span class="php-keyword1">function</span> format_number(float <span class="php-var">$number</span>, 
-                       int <span class="php-var">$decimals</span> = <span class="php-num">0</span>, 
-                       string <span class="php-var">$dec_point</span> = <span class="php-quote">&quot;.&quot;</span>, 
-                       string <span class="php-var">$thousand_sep</span> = <span class="php-quote">&quot;,&quot;</span>
-                      ) : string|<span class="php-keyword1">null</span>;
-</div>
+<div class="definition"><span class="php-keyword1">function</span> format_number(string <span class="php-var">$number</span>, int <span class="php-var">$decimals</span> = <span class="php-num">0</span>, string <span class="php-var">$dec_point</span> = <span class="php-quote">&quot;.&quot;</span>, string <span class="php-var">$thousand_sep</span> = <span class="php-quote">&quot;,&quot;</span>): ?string;</div>
 
 
 <div class="short-description">
@@ -161,14 +162,13 @@
               by value
           </td>
           <td>
-              float
+              string
           </td>
           <td>
               
           </td>
           <td class="description_column">
-              <p>The number to be formatted.
-The number to be formatted.</p>
+              <p>The number to be formatted.</p>
           </td>
       </tr>
       
@@ -186,8 +186,7 @@ The number to be formatted.</p>
               0
           </td>
           <td class="description_column">
-              <p>The number of digits after the dot.
-The number of digits after the dot.</p>
+              <p>The number of digits after the dot.</p>
           </td>
       </tr>
       
@@ -205,8 +204,7 @@ The number of digits after the dot.</p>
               &quot;.&quot;
           </td>
           <td class="description_column">
-              <p>The decimal separator.
-The decimal separator.</p>
+              <p>The decimal separator.</p>
           </td>
       </tr>
       
@@ -224,8 +222,7 @@ The decimal separator.</p>
               &quot;,&quot;
           </td>
           <td class="description_column">
-              <p>The thousand separator.
-The thousand separator.</p>
+              <p>The thousand separator.</p>
           </td>
       </tr>
       
@@ -235,10 +232,9 @@ The thousand separator.</p>
 
 <h2>Returns</h2>
 <div class="item_list">
-string|null<br>
+?string<br>
 
 <div class="item_description"><p>If the number is a vialid number, its formatted value is returned. Otherwise,
-the empty value is returned. It is usefil if we need to distiguish the empty value and 0.
 the empty value is returned. It is usefil if we need to distiguish the empty value and 0.</p></div>
 
 </div>
@@ -267,11 +263,11 @@ the empty value is returned. It is usefil if we need to distiguish the empty val
 
 <h2>Source code</h2>
 <div class="item_list">
-<a href='source-utility_functions_inc.php.html#562'>utility_functions_inc.php</a>
+<a href='source-utility_functions_inc.php.html#546'>utility_functions_inc.php</a>
 </div>
                     
                     <div id="footer">
-                        Generated on 2024-11-19 13:27 with <a href="https://github.com/oschildt/PhpDoxy" target="_blank">PhpDoxy</a>
+                        Generated on 2025-11-25 16:55 with <a href="https://github.com/oschildt/PhpDoxy" target="_blank">PhpDoxy</a>
                     </div>                    
                 </div>
             </div>

@@ -1,37 +1,36 @@
 <?php
-/**
- * This is a file for the TestTrait.
- *
- * @package System
- */
-
 namespace SmartFactory;
 
 /**
-* This is a test trait.
+* TestTrait for handling the XML API requests.
 */
 trait TestTrait
 {
     /**
-     * This is a method sayHello.
+     * This is a funct sayHello
      *
      * @param int $hello
-     * Hello mode.
+     * Des
      *
      * @return void
      */
     public function sayHello($hello)
     {
-        echo 'Hello!';
+        parent::sayHello();
+        echo 'World!';
     }
-    
+
     /**
-     * This is a method sayGoodbye.
+     * This is a funct 2 sayGoodbuy
+     *
+     * @param int $buy
+     * Des
      *
      * @return void
      */
-    public function sayGoodbye()
+    public function sayGoodbuy($buy)
     {
-        echo 'Good bye!';
+        parent::sayGoodbuy();
+        echo 'World!';
     }
 }

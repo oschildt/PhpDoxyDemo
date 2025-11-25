@@ -22,15 +22,17 @@ interface IErrorHandler extends IInitable
      * @param array $parameters
      * The parameters may vary for each error handler.
      *
-     * @return boolean
-     * The method should return true upon successful initialization, otherwise false.
+     * @return void
+     *
+     * @throws \Exception
+     * It might throw an exception in the case of any system errors.
      *
      * @author Oleg Schildt
      */
-    public function init($parameters);
+    public function init(array $parameters): void;
     
     /**
-     * This is the function for handling of the PHP errors. It is set a the
+     * This is the function for handling of the PHP errors. It is set in the
      * error handler.
      *
      * @param int $errno
@@ -40,49 +42,43 @@ interface IErrorHandler extends IInitable
      * Error text.
      *
      * @param string $errfile
-     * Source file where the error occured.
+     * Source file where the error occurred.
      *
      * @param int $errline
-     * Line number where the error occured.
+     * Line number where the error occurred.
      *
      * @return void
      *
      * @author Oleg Schildt
      */
-    public function handleError($errno, $errstr, $errfile, $errline);
+    public function handleError(int $errno, string $errstr, string $errfile, int $errline): void;
     
     /**
      * This is the function for handling of the PHP exceptions. It should
-     * be called in the catch block to trace detailed infromation
+     * be called in the catch block to trace detailed information
      * if an exception is thrown.
      *
      * @param \Throwable $ex
      * Thrown exception.
      *
-     * @param string $errfuntion
-     * Funtion name where the exception has been catched.
-     *
-     * @param string $errfile
-     * Source file where the exception has been catched.
-     *
-     * @param int $errline
-     * Line number where the exception has been catched.
+     * @param int $errno
+     * Error code.
      *
      * @return void
      *
      * @author Oleg Schildt
      */
-    public function handleException($ex, $errfuntion, $errfile, $errline);
+    public function handleException(\Throwable $ex, int $errno): void;
     
     /**
      * Returns the last error.
      *
      * @return string
-     * Returns the last error or an empty string if no error occured so far.
+     * Returns the last error or an empty string if no error occurred so far.
      *
      * @author Oleg Schildt
      */
-    public function getLastError();
+    public function getLastError(): string;
     
     /**
      * Stores the last error.
@@ -94,15 +90,15 @@ interface IErrorHandler extends IInitable
      *
      * @author Oleg Schildt
      */
-    public function setLastError($error);
+    public function setLastError(string $error): void;
     
     /**
      * Returns the state whether the trace is active or not.
      *
-     * If the trace is active, any eror, warning or notice is traced to
+     * If the trace is active, any error, warning or notice is traced to
      * the standard file.
      *
-     * @return boolean
+     * @return bool
      * Returns the state whether the trace is active or not.
      *
      * @see IErrorHandler::enableTrace()
@@ -110,12 +106,12 @@ interface IErrorHandler extends IInitable
      *
      * @author Oleg Schildt
      */
-    public function traceActive();
+    public function traceActive(): bool;
     
     /**
      * Enables the trace.
      *
-     * If the trace is active, any eror, warning or notice is traced to
+     * If the trace is active, any error, warning or notice is traced to
      * the standard file.
      *
      * @return void
@@ -125,7 +121,7 @@ interface IErrorHandler extends IInitable
      *
      * @author Oleg Schildt
      */
-    public function enableTrace();
+    public function enableTrace(): void;
     
     /**
      * Disables the trace.
@@ -140,5 +136,5 @@ interface IErrorHandler extends IInitable
      *
      * @author Oleg Schildt
      */
-    public function disableTrace();
+    public function disableTrace(): void;
 } // IErrorHandler

@@ -11,7 +11,7 @@
         <link rel="stylesheet" href="resources/jquery.iviewer.css">
 
         <title>
-            Function: checkempty()
+            Source Code: test_global1.php - SmartFactory Library
         </title>
     </head>
 
@@ -49,14 +49,20 @@
                         </li>
                         
                         <li>
-                            <a href="functions.html" class="active">
+                            <a href="functions.html" class="">
                                 Functions
                             </a>
                         </li>
                         
                         <li>
-                            <a href="log.html" class="">
-                                Log
+                            <a href="constants.html" class="">
+                                Constants
+                            </a>
+                        </li>
+                        
+                        <li>
+                            <a href="globals.html" class="">
+                                Globals
                             </a>
                         </li>
                         
@@ -85,27 +91,13 @@
             <div class="col-md-12">
             
                 
-                <div class="pull-left type">
-                    <span class="label label-primary">Function</span>
-                </div>
-                
                 
                 <ol class="breadcrumb pull-left">
                         
                         
-
-                        <li>
-                            <a href="namespace-SmartFactory.html">SmartFactory</a>
-                        </li>
-
-                        <!-- if separator -->
-                        <li class="backslash">\</li>
-                        <!-- endif separator -->
-
-                        
  
 
-                        <li class="active">checkempty()</li>
+                        <li class="active"></li>
                 </ol>
                 
             </div>
@@ -117,96 +109,34 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
-                    <h1>Function: checkempty()</h1>
+                    <h2>Source Code: test_global1.php</h2>
 
-<div class="definition"><span class="php-keyword1">function</span> &amp;checkempty(mixed &amp;<span class="php-var">$var</span>) : mixed;</div>
-
-
-<div class="short-description">
-<p>This is an auxiliary function that checks whether a
-variable exists.</p>
-</div>
-
-
-
-
-
-
-<h2>Parameters</h2>
-
-  <table class="table table-responsive table-bordered table-striped param_multicolumn">
-      <tr>
-      <th>Name</th>
-      <th>Pass type</th>
-      <th>Value type</th>
-      <th>Default value</th>
-      <th>Description</th>
-      </tr>
-      
-      
-      <tr>
-          <td>
-              $var
-          </td>
-          <td>
-              by reference
-          </td>
-          <td>
-              mixed
-          </td>
-          <td>
-              
-          </td>
-          <td class="description_column">
-              <p>The variable to be checked.
-The variable to be checked.</p>
-          </td>
-      </tr>
-      
-      
-  </table>
-
-
-<h2>Returns</h2>
-<div class="item_list">
-mixed<br>
-
-<div class="item_description"><p>If the variable exists, it is returned. Otherwise
-an empty value is returned, whereas no standard PHP
-warning is emitted that the variable is undefined.
-warning is emitted that the variable is undefined.</p></div>
-
-</div>
-
-
-
-
-<h2>Authors</h2>
-<div class="item_list">
-
-<div class='item'>Oleg Schildt</div>
-
-</div>
-
-
-
-
-
-
-<h2>Package</h2>
-<div class="item_list">
-<a href='package-Utility Functions.html'>Utility Functions</a>
-</div>
-
-
-
-<h2>Source code</h2>
-<div class="item_list">
-<a href='source-utility_functions_inc.php.html#454'>utility_functions_inc.php</a>
+<div id="source"><pre class="code"><code><span class="line" id="1"> 1: </span><span class="xlang">&lt;?php</span>
+<span class="line" id="2"> 2: </span><span class="php-comment">/**
+</span><span class="line" id="3"> 3: </span><span class="php-comment"> * This is a file
+</span><span class="line" id="4"> 4: </span><span class="php-comment"> */</span>
+<span class="line" id="5"> 5: </span>
+<span class="line" id="6"> 6: </span><span class="php-keyword1">namespace</span> SmartFactory;
+<span class="line" id="7"> 7: </span>
+<span class="line" id="8"> 8: </span><span class="php-comment">/**
+</span><span class="line" id="9"> 9: </span><span class="php-comment"> * This is a constant
+</span><span class="line" id="10">10: </span><span class="php-comment"> *
+</span><span class="line" id="11">11: </span><span class="php-comment"> * @var int
+</span><span class="line" id="12">12: </span><span class="php-comment"> */</span>
+<span class="line" id="13">13: </span><span class="php-keyword1">const</span> MAX_SIZE = <span class="php-num">100</span>;
+<span class="line" id="14">14: </span>
+<span class="line" id="15">15: </span><span class="php-comment">/**
+</span><span class="line" id="16">16: </span><span class="php-comment"> * This is a variable
+</span><span class="line" id="17">17: </span><span class="php-comment"> *
+</span><span class="line" id="18">18: </span><span class="php-comment"> * @var DBWorker
+</span><span class="line" id="19">19: </span><span class="php-comment"> */</span>
+<span class="line" id="20">20: </span><span class="php-var">$bogo</span> = <span class="php-keyword1">new</span> DBWorker();
+</code>
+</pre>
 </div>
                     
                     <div id="footer">
-                        Generated on 2024-11-19 13:27 with <a href="https://github.com/oschildt/PhpDoxy" target="_blank">PhpDoxy</a>
+                        Generated on 2025-11-25 16:55 with <a href="https://github.com/oschildt/PhpDoxy" target="_blank">PhpDoxy</a>
                     </div>                    
                 </div>
             </div>

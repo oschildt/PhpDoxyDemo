@@ -10,7 +10,7 @@
 
 namespace SmartFactory;
 
-use SmartFactory\Interfaces\IErrorHandler;
+use \SmartFactory\Interfaces\IErrorHandler;
 
 /**
  * Class for error handling.
@@ -22,11 +22,11 @@ class ErrorHandler implements IErrorHandler
     /**
      * Internal variable for storing the log path.
      *
-     * @var string
+     * @var ?string
      *
      * @author Oleg Schildt
      */
-    protected $log_path = "";
+    protected ?string $log_path = null;
     
     /**
      * Internal variable for storing the last error.
@@ -38,12 +38,12 @@ class ErrorHandler implements IErrorHandler
      *
      * @author Oleg Schildt
      */
-    protected static $last_error;
+    protected static string $last_error = "";
     
     /**
      * Internal variable for storing the state of tracing - active or not.
      *
-     * @var boolean
+     * @var bool
      *
      * @see ErrorHandler::traceActive()
      * @see ErrorHandler::enableTrace()
@@ -51,7 +51,7 @@ class ErrorHandler implements IErrorHandler
      *
      * @author Oleg Schildt
      */
-    protected static $trace_disabled = false;
+    protected static bool $trace_disabled = false;
     
     /**
      * Initializes the error handler with parameters.
@@ -61,8 +61,7 @@ class ErrorHandler implements IErrorHandler
      *
      * - $parameters["log_path"] - the target file path where the logs should be stored.
      *
-     * @return boolean
-     * Returns true upon successful initialization, otherwise false.
+     * @return void
      *
      * @throws \Exception
      * It might throw an exception in the case of any errors:
@@ -72,7 +71,7 @@ class ErrorHandler implements IErrorHandler
      *
      * @author Oleg Schildt
      */
-    public function init($parameters)
+    public function init(array $parameters): void
     {
         if (empty($parameters["log_path"])) {
             throw new \Exception("Log path is not specified!");
@@ -80,7 +79,7 @@ class ErrorHandler implements IErrorHandler
         
         if ($parameters["log_path"] == "stdout") {
             $this->log_path = $parameters["log_path"];
-            return true;
+            return;
         }
         
         $this->log_path = rtrim(str_replace("\\", "/", $parameters["log_path"]), "/") . "/";
@@ -89,8 +88,6 @@ class ErrorHandler implements IErrorHandler
         if (!file_exists($this->log_path) || !is_writable($this->log_path) || (file_exists($file) && !is_writable($file))) {
             throw new \Exception(sprintf("The trace file '%s' is not writable!", $file));
         }
-        
-        return true;
     }
     
     /**
@@ -104,26 +101,27 @@ class ErrorHandler implements IErrorHandler
      *
      * @author Oleg Schildt
      */
-    protected function format_backtrace($btrace)
+    function format_backtrace(array $btrace): string
     {
         if (empty($btrace) || count($btrace) == 0) {
             return "backtrace empty";
         }
-        
+
         $trace = "";
-        
-        foreach ($btrace as $nr => &$btrace_entry) {
+
+        foreach ($btrace as $nr => $btrace_entry) {
             if ($nr == 0) {
-                $trace .=
-                    $btrace_entry["args"][1] . "\r\n" .
-                    "[" . $this->trim_path(str_replace("\\", "/", $btrace_entry["args"][2])) . ", " . $btrace_entry["args"][3] . "]";
-                
+                $trace .= $btrace_entry["args"][1];
+
+                $trace .= "\r\n\r\n";
+
+                $trace .= "#URI: " . ($_SERVER["REQUEST_URI"] ?? "") . "\r\n";
+                $trace .= "#Source: " . $this->trim_path(str_replace("\\", "/", $btrace_entry["args"][2])) . ", " . $btrace_entry["args"][3] . "\r\n";
+
                 $cstack = $this->extract_call_stack($btrace);
                 if (!empty($cstack)) {
-                    $trace .= "\r\n\r\nCall stack:\r\n\r\n" . $cstack;
+                    $trace .= "#Callstack:\r\n" . $cstack . "\r\n";
                 }
-                
-                continue;
             }
         }
         
@@ -141,10 +139,10 @@ class ErrorHandler implements IErrorHandler
      *
      * @author Oleg Schildt
      */
-    protected function trim_path($path)
+    protected function trim_path(string $path): string
     {
         $common_prefix = common_prefix(str_replace("\\", "/", __DIR__), $path);
-        
+
         return str_replace($common_prefix, "", $path);
     } // trim_path
     
@@ -159,9 +157,9 @@ class ErrorHandler implements IErrorHandler
      *
      * @author Oleg Schildt
      */
-    protected function extract_call_stack($btrace)
+    protected function extract_call_stack(array $btrace): string
     {
-        if (empty($btrace) || !is_array($btrace)) {
+        if (empty($btrace)) {
             return "";
         }
         
@@ -170,7 +168,7 @@ class ErrorHandler implements IErrorHandler
         $indent = "";
         foreach ($btrace as $btrace_entry) {
             
-            if (!empty($btrace_entry["function"]) && ($btrace_entry["function"] == "handle_error" || strpos($btrace_entry["function"], "{closure}") !== false || $btrace_entry["function"] == "handleError" || $btrace_entry["function"] == "trigger_error")) {
+            if (!empty($btrace_entry["function"]) && ($btrace_entry["function"] == "handle_error" || str_contains($btrace_entry["function"], "{closure}") || $btrace_entry["function"] == "handleError" || $btrace_entry["function"] == "trigger_error")) {
                 continue;
             }
             
@@ -179,10 +177,25 @@ class ErrorHandler implements IErrorHandler
             }
             
             if (!empty($btrace_entry["function"])) {
-                $trace .= $indent . str_replace("SmartFactory\\", "", $btrace_entry["function"]) . "() ";
+                $function = $btrace_entry["function"];
+
+                if (preg_match("/{closure:([^}{]+)}/", $function, $matches)) {
+                    $trace .= $indent . "{closure:" . $this->trim_path(str_replace("\\", "/", $matches[1])) . "}" . "(";
+                } else {
+                    $trace .= $indent . str_replace("SmartFactory\\", "", $function) . "(";
+                }
+
+                $args = (isset($btrace_entry["args"])) ? $btrace_entry["args"] : [];
+                $args_str = $this->make_arg_list($args);
+
+                if (!empty($args_str)) {
+                    $trace .= $args_str;
+                }
+
+                $trace .= ")";
             }
             
-            $trace .= "[";
+            $trace .= " [";
             
             $trace .= $this->trim_path(str_replace("\\", "/", $btrace_entry["file"]));
             
@@ -196,13 +209,6 @@ class ErrorHandler implements IErrorHandler
             
             $trace .= "]";
             
-            $args = (isset($btrace_entry["args"])) ? $btrace_entry["args"] : [];
-            $args_str = $this->make_arg_list($args);
-            
-            if (!empty($btrace_entry["function"]) && !empty($args_str)) {
-                $trace .= ", call arguments: " . str_replace("SmartFactory\\", "", $btrace_entry["function"]) . "(" . $args_str . ")";
-            }
-            
             $trace .= "\r\n";
             
             $indent .= "  ";
@@ -211,6 +217,33 @@ class ErrorHandler implements IErrorHandler
         return trim($trace);
     } // extract_call_stack
     
+    /**
+     * This is an auxiliary function for truncating long arguments.
+     *
+     * @param ?string $str
+     * The string to be truncated.
+     *
+     * @param int $limit
+     * The limit of the length after which the string is truncated.
+     *
+     * @return string
+     * Returns the truncated string.
+     *
+     * @author Oleg Schildt
+     */
+    protected function truncate_argument(?string $str, int $limit): string
+    {
+        if (empty($str)) {
+            return "";
+        }
+
+        $str = preg_replace("/[\r\n\t]+/", " ", $str);
+        
+        return mb_strlen($str) > $limit
+            ? mb_substr($str, 0, $limit) . "..."
+            : $str;
+    }
+
     /**
      * This is an auxiliary function for generation of the detailed string from the
      * function arguments from the standard PHP backtrace (debug_backtrace).
@@ -225,28 +258,37 @@ class ErrorHandler implements IErrorHandler
      *
      * @author Oleg Schildt
      */
-    protected function deep_implode(&$arr)
+    protected function deep_implode(array &$arr): string
     {
         $list = "";
         
+        $count = 1;
+        
         foreach ($arr as $nm => &$val) {
+            if ($count >= 4) {
+                $list .= "...";
+                break;
+            }
+
             if (is_array($val)) {
                 $list .= $this->deep_implode($val) . ", ";
             } elseif (is_object($val)) {
                 $list .= str_replace("SmartFactory\\", "", get_class($val)) . ", ";
             } else {
-                $list .= $nm . "=" . $val . ", ";
+                $list .= $nm . "=" . $this->truncate_argument($val, 15) . ", ";
             }
+            
+            $count++;
         }
         
         return "[" . trim($list, ", ") . "]";
     } // deep_implode
-    
+
     /**
      * Generates the detailed string from the function arguments from the
      * standard PHP backtrace (debug_backtrace).
      *
-     * @param array &$args
+     * @param array $args
      * The array of the function arguments.
      *
      * @return string
@@ -254,7 +296,7 @@ class ErrorHandler implements IErrorHandler
      *
      * @author Oleg Schildt
      */
-    protected function make_arg_list(&$args)
+    protected function make_arg_list(array $args): string
     {
         $list = "";
         
@@ -264,7 +306,7 @@ class ErrorHandler implements IErrorHandler
             } elseif (is_object($arg)) {
                 $list .= str_replace("SmartFactory\\", "", get_class($arg)) . ", ";
             } else {
-                $list .= $arg . ", ";
+                $list .= $this->truncate_argument($arg, 15) . ", ";
             }
         }
         
@@ -280,7 +322,7 @@ class ErrorHandler implements IErrorHandler
      * @param string $message
      * The message to be traced.
      *
-     * @return boolean
+     * @return bool
      * Returns true if the message has been successfully trace, otherwise false.
      *
      * @throws \Exception
@@ -290,17 +332,17 @@ class ErrorHandler implements IErrorHandler
      *
      * @author Oleg Schildt
      */
-    protected function trace_message($etype, $message)
+    protected function trace_message(string $etype, string $message): bool
     {
         if (!$this->traceActive()) {
             return true;
         }
         
         $message = date("Y-m-d H:i:s") . "\r\n" .
-            "----------------------------------------------------------\r\n" .
-            $etype . ":\r\n" .
+            "------------------------------------\r\n" .
+            "### " . $etype . " ###\r\n\r\n" .
             $message . "\r\n" .
-            "----------------------------------------------------------\r\n" .
+            "------------------------------------\r\n" .
             "\r\n\r\n";
         
         $trace_file_writable = true;
@@ -315,7 +357,7 @@ class ErrorHandler implements IErrorHandler
         }
     
         if(empty($this->log_path)) {
-            $message = "The trace file is not specifed!" . "\n" .
+            $message = "The trace file is not specified!" . "\n" .
                 "Tracing to the stdout.\n\n" . $message;
         }
         
@@ -330,9 +372,9 @@ class ErrorHandler implements IErrorHandler
         
         return file_put_contents($file, $message, FILE_APPEND) !== false;
     } // trace_message
-    
+
     /**
-     * This is the function for handling of the PHP errors. It is set a the
+     * This is the function for handling of the PHP errors. It is set in the
      * error handler.
      *
      * @param int $errno
@@ -342,16 +384,19 @@ class ErrorHandler implements IErrorHandler
      * Error text.
      *
      * @param string $errfile
-     * Source file where the error occured.
+     * Source file where the error occurred.
      *
      * @param int $errline
-     * Line number where the error occured.
+     * Line number where the error occurred.
      *
      * @return void
      *
+     * @throws \Exception
+     * It might throw an exception in the case of any errors.
+     *
      * @author Oleg Schildt
      */
-    public function handleError($errno, $errstr, $errfile, $errline)
+    public function handleError(int $errno, string $errstr, string $errfile, int $errline): void
     {
         $this->setLastError($errstr);
         
@@ -367,7 +412,6 @@ class ErrorHandler implements IErrorHandler
             E_USER_ERROR => "User Error",
             E_USER_WARNING => "User Warning",
             E_USER_NOTICE => "User Notice",
-            E_STRICT => "Runtime Notice",
             E_DEPRECATED => "Deprecated Notice"
         ];
         
@@ -378,32 +422,33 @@ class ErrorHandler implements IErrorHandler
         }
         
         $this->trace_message($etype, $this->format_backtrace(debug_backtrace()));
-        
-        event()->fireEvent("php_error", ["etype" => $etype, "errstr" => $errstr, "errfile" => $errfile, "errline" => $errline]);
+
+        // E_USER_ERROR means that the error has been explicitly triggered by the programmer for tracing.
+        // The extra programming warning is not necessary because the message will be shown as a program error.
+        if ($errno != E_USER_ERROR && error_reporting() !== null) {
+            event()->fireEvent("php_error", ["etype" => $etype, "errstr" => $errstr, "errfile" => $errfile, "errline" => $errline]);
+        }
     } // handleError
-    
+
     /**
      * This is the function for handling of the PHP exceptions. It should
-     * be called in the catch block to trace detailed infromation
+     * be called in the catch block to trace detailed information
      * if an exception is thrown.
      *
      * @param \Throwable $ex
      * Thrown exception.
      *
-     * @param string $errfuntion
-     * Funtion name where the exception has been catched.
-     *
-     * @param string $errfile
-     * Source file where the exception has been catched.
-     *
-     * @param int $errline
-     * Line number where the exception has been catched.
+     * @param int $errno
+     * Error code.
      *
      * @return void
      *
+     * @throws \Exception
+     * It might throw an exception in the case of any errors.
+     *
      * @author Oleg Schildt
      */
-    public function handleException($ex, $errfuntion, $errfile, $errline)
+    public function handleException(\Throwable $ex, int $errno): void
     {
         $this->setLastError($ex->getMessage());
         
@@ -419,11 +464,8 @@ class ErrorHandler implements IErrorHandler
             E_USER_ERROR => "User Error",
             E_USER_WARNING => "User Warning",
             E_USER_NOTICE => "User Notice",
-            E_STRICT => "Runtime Notice",
             E_DEPRECATED => "Deprecated Notice"
         ];
-        
-        $errno = $ex->getCode();
         
         if (empty($errortype[$errno])) {
             $etype = $errno;
@@ -432,26 +474,36 @@ class ErrorHandler implements IErrorHandler
         }
         
         $trace = $ex->getTrace();
-        $trace_entry["args"] = ["", $ex->getMessage(), $errfile, $errline];
+        $trace_entry["args"] = ["", $ex->getMessage(), $ex->getFile(), $ex->getLine()];
         array_unshift($trace, $trace_entry);
-        
+
         $this->trace_message($etype, $this->format_backtrace($trace));
-        
-        event()->fireEvent("php_error", ["etype" => $etype, "errstr" => $ex->getMessage(), "errfile" => $ex->getFile(), "errline" => $ex->getLine()]);
     }
     
     /**
      * Returns the last error.
      *
      * @return string
-     * Returns the last error or an empty string if no error occured so far.
+     * Returns the last error or an empty string if no error occurred so far.
      *
      * @author Oleg Schildt
      */
-    public function getLastError()
+    public function getLastError(): string
     {
         if (empty(self::$last_error)) {
-            return "";
+            $errors = error_get_last();
+
+            if (empty($errors)) {
+                return "";
+            }
+        
+            $error = array_pop($errors);
+
+            if (empty($error)) {
+                return "";
+            }
+
+            return $error["message"] ?? "";
         }
         
         return self::$last_error;
@@ -467,7 +519,7 @@ class ErrorHandler implements IErrorHandler
      *
      * @author Oleg Schildt
      */
-    public function setLastError($error)
+    public function setLastError(string $error): void
     {
         self::$last_error = $error;
     } // setLastError
@@ -475,7 +527,7 @@ class ErrorHandler implements IErrorHandler
     /**
      * Returns the state whether the trace is active or not.
      *
-     * If the trace is active, any eror, warning or notice is traced to
+     * If the trace is active, any error, warning or notice is traced to
      * the standard file.
      *
      * The trace is generally managed over the setting tracing_enabled.
@@ -483,7 +535,7 @@ class ErrorHandler implements IErrorHandler
      * trace log clear when you make a check that can produce a trace
      * entry, but it is a controlled noticed and should not clutter the trace.
      *
-     * @return boolean
+     * @return bool
      * Returns the state whether the trace is active or not.
      *
      * @see ErrorHandler::enableTrace()
@@ -491,7 +543,7 @@ class ErrorHandler implements IErrorHandler
      *
      * @author Oleg Schildt
      */
-    public function traceActive()
+    public function traceActive(): bool
     {
         return empty(self::$trace_disabled);
     } // traceActive
@@ -499,7 +551,7 @@ class ErrorHandler implements IErrorHandler
     /**
      * Enables the trace.
      *
-     * If the trace is active, any eror, warning or notice is traced to
+     * If the trace is active, any error, warning or notice is traced to
      * the standard file.
      *
      * @return void
@@ -509,7 +561,7 @@ class ErrorHandler implements IErrorHandler
      *
      * @author Oleg Schildt
      */
-    public function enableTrace()
+    public function enableTrace(): void
     {
         self::$trace_disabled = false;
     } // enableTrace
@@ -517,7 +569,7 @@ class ErrorHandler implements IErrorHandler
     /**
      * Disables the trace.
      *
-     * If the trace is active, any eror, warning or notice is traced to
+     * If the trace is active, any error, warning or notice is traced to
      * the standard file.
      *
      * @return void
@@ -527,7 +579,7 @@ class ErrorHandler implements IErrorHandler
      *
      * @author Oleg Schildt
      */
-    public function disableTrace()
+    public function disableTrace(): void
     {
         self::$trace_disabled = true;
     } // disableTrace

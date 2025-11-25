@@ -55,8 +55,14 @@
                         </li>
                         
                         <li>
-                            <a href="log.html" class="">
-                                Log
+                            <a href="constants.html" class="">
+                                Constants
+                            </a>
+                        </li>
+                        
+                        <li>
+                            <a href="globals.html" class="">
+                                Globals
                             </a>
                         </li>
                         
@@ -119,12 +125,12 @@
                 <div class="col-md-12">
                     <h1>Function: text()</h1>
 
-<div class="definition"><span class="php-keyword1">function</span> text(string <span class="php-var">$text_id</span>, string <span class="php-var">$lng</span> = <span class="php-quote">&quot;&quot;</span>, bool <span class="php-var">$warn_missing</span> = <span class="php-keyword1">true</span>, string <span class="php-var">$default_text</span> = <span class="php-quote">&quot;&quot;</span>) : string;</div>
+<div class="definition"><span class="php-keyword1">function</span> text(string <span class="php-var">$text_id</span>, string <span class="php-var">$lng</span> = <span class="php-quote">&quot;&quot;</span>, string <span class="php-var">$default_text</span> = <span class="php-quote">&quot;&quot;</span>): string;</div>
 
 
 <div class="short-description">
 <p>Short function that provides the text translation for
-the text ID for the given langauge.</p>
+the text ID for the given language.</p>
 </div>
 
 
@@ -158,8 +164,7 @@ the text ID for the given langauge.</p>
               
           </td>
           <td class="description_column">
-              <p>Text ID
-Text ID</p>
+              <p>Text ID</p>
           </td>
       </tr>
       
@@ -177,30 +182,8 @@ Text ID</p>
               &quot;&quot;
           </td>
           <td class="description_column">
-              <p>The langauge. If it is not specified,
-the default langauge is used.
-the default langauge is used.</p>
-          </td>
-      </tr>
-      
-      <tr>
-          <td>
-              $warn_missing
-          </td>
-          <td>
-              by value
-          </td>
-          <td>
-              bool
-          </td>
-          <td>
-              true
-          </td>
-          <td class="description_column">
-              <p>If it is set to true,
-the E_USER_NOTICE is triggered in the case of missing
-translations.
-translations.</p>
+              <p>The language. If it is not specified,
+the default language is used.</p>
           </td>
       </tr>
       
@@ -218,8 +201,7 @@ translations.</p>
               &quot;&quot;
           </td>
           <td class="description_column">
-              <p>The default text to be used if there is no translation.
-The default text to be used if there is no translation.</p>
+              <p>The default text to be used if there is no translation.</p>
           </td>
       </tr>
       
@@ -232,7 +214,6 @@ The default text to be used if there is no translation.</p>
 string<br>
 
 <div class="item_description"><p>Returns the translation text or the $text_id if no translation
-is found.
 is found.</p></div>
 
 </div>
@@ -274,11 +255,11 @@ is found.</p></div>
 
 <h2>Source code</h2>
 <div class="item_list">
-<a href='source-short_functions_inc.php.html#52'>short_functions_inc.php</a>
+<a href='source-short_functions_inc.php.html#47'>short_functions_inc.php</a>
 </div>
                     
                     <div id="footer">
-                        Generated on 2024-11-19 13:27 with <a href="https://github.com/oschildt/PhpDoxy" target="_blank">PhpDoxy</a>
+                        Generated on 2025-11-25 16:55 with <a href="https://github.com/oschildt/PhpDoxy" target="_blank">PhpDoxy</a>
                     </div>                    
                 </div>
             </div>

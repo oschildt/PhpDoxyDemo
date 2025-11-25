@@ -55,8 +55,14 @@
                         </li>
                         
                         <li>
-                            <a href="log.html" class="">
-                                Log
+                            <a href="constants.html" class="">
+                                Constants
+                            </a>
+                        </li>
+                        
+                        <li>
+                            <a href="globals.html" class="">
+                                Globals
                             </a>
                         </li>
                         
@@ -244,7 +250,7 @@ through the array of parameters.</p>
   
   <h1>Method: IInitable::init()</h1>
 
-  <div class="definition"><span class="php-keyword1">public</span> <span class="php-keyword1">function</span> init(<span class="php-keyword1">array</span> <span class="php-var">$parameters</span>) : bool;</div>
+  <div class="definition"><span class="php-keyword1">public</span> <span class="php-keyword1">function</span> init(<span class="php-keyword1">array</span> <span class="php-var">$parameters</span>): void;</div>
 
   
   <div class="short-description">
@@ -283,7 +289,6 @@ through the array of parameters.</p>
             </td>
             <td class="description_column">
                 <p>This array may contain any data required for the initialization
-of the objects of your class.
 of the objects of your class.</p>
             </td>
         </tr>
@@ -294,15 +299,20 @@ of the objects of your class.</p>
   
   <h2>Returns</h2>
   <div class="item_list">
-  bool<br>
-  
-  <div class="item_description"><p>The method should return true upon successful initialization, otherwise false.
-The method should return true upon successful initialization, otherwise false.</p></div>
+  void<br>
   
   </div>
   
 
+  <h2>Throws</h2>
+  <div class="item_list">
   
+  \Exception<br>
+  
+  <div class="item_description"><p>It might throw an exception in the case of any errors.</p></div>
+  
+  
+  </div>
 
   
 
@@ -320,11 +330,11 @@ The method should return true upon successful initialization, otherwise false.</
   
   <h2>Source code</h2>
   <div class="item_list">
-  <a href='source-SmartFactory.Interfaces.IInitable.php.html#34'>SmartFactory/Interfaces/IInitable.php</a>
+  <a href='source-SmartFactory.Interfaces.IInitable.php.html#36'>SmartFactory/Interfaces/IInitable.php</a>
   </div>
                     
                     <div id="footer">
-                        Generated on 2024-11-19 13:27 with <a href="https://github.com/oschildt/PhpDoxy" target="_blank">PhpDoxy</a>
+                        Generated on 2025-11-25 16:55 with <a href="https://github.com/oschildt/PhpDoxy" target="_blank">PhpDoxy</a>
                     </div>                    
                 </div>
             </div>

@@ -55,8 +55,14 @@
                         </li>
                         
                         <li>
-                            <a href="log.html" class="">
-                                Log
+                            <a href="constants.html" class="">
+                                Constants
+                            </a>
+                        </li>
+                        
+                        <li>
+                            <a href="globals.html" class="">
+                                Globals
                             </a>
                         </li>
                         
@@ -119,7 +125,7 @@
                 <div class="col-md-12">
                     <h1>Function: instance()</h1>
 
-<div class="definition"><span class="php-keyword1">function</span> instance(string|object <span class="php-var">$interface_or_class</span>) : object;</div>
+<div class="definition"><span class="php-keyword1">function</span> instance(string|object <span class="php-var">$interface_or_class</span>, string <span class="php-var">$context</span> = <span class="php-quote">&quot;default&quot;</span>): object;</div>
 
 
 <div class="short-description">
@@ -163,8 +169,26 @@ a separate instance must be created for each item.</p>
               
           </td>
           <td class="description_column">
-              <p>Name of the class/interface as string or the class/interface.
-Name of the class/interface as string or the class/interface.</p>
+              <p>Name of the class/interface as string or the class/interface.</p>
+          </td>
+      </tr>
+      
+      <tr>
+          <td>
+              $context
+          </td>
+          <td>
+              by value
+          </td>
+          <td>
+              string
+          </td>
+          <td>
+              &quot;default&quot;
+          </td>
+          <td class="description_column">
+              <p>The context of binding. You can introduce a different context, and bind another implementation.
+Then, you can request another instance specifying the context explicitly.</p>
           </td>
       </tr>
       
@@ -176,8 +200,7 @@ Name of the class/interface as string or the class/interface.</p>
 <div class="item_list">
 object<br>
 
-<div class="item_description"><p>Returns object of the class bound to the interface.
-Returns object of the class bound to the interface.</p></div>
+<div class="item_description"><p>Returns object of the class bound to the interface.</p></div>
 
 </div>
 
@@ -218,7 +241,7 @@ Returns object of the class bound to the interface.</p></div>
 
 <h2>Source code</h2>
 <div class="item_list">
-<a href='source-factory_functions_inc.php.html#67'>factory_functions_inc.php</a>
+<a href='source-factory_functions_inc.php.html#75'>factory_functions_inc.php</a>
 </div>
 
 
@@ -231,7 +254,7 @@ Returns object of the class bound to the interface.</p></div>
 </div>
                     
                     <div id="footer">
-                        Generated on 2024-11-19 13:27 with <a href="https://github.com/oschildt/PhpDoxy" target="_blank">PhpDoxy</a>
+                        Generated on 2025-11-25 16:55 with <a href="https://github.com/oschildt/PhpDoxy" target="_blank">PhpDoxy</a>
                     </div>                    
                 </div>
             </div>

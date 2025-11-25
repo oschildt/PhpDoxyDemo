@@ -1,8 +1,12 @@
 {
   "require": {
-    "php": ">=8.0",
-    "smartfactory/phpdoxy": ">=1.0.4"
+    "php": ">=8.4",
+    "smartfactory/phpdoxy": ">=1.0.7"
   },
+
+  "minimum-stability": "dev",
+  "prefer-stable": true,
+
   "config": {
     "optimize-autoloader": true
   }
